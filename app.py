@@ -59,6 +59,7 @@ html, body, [data-testid="stAppViewContainer"] {{
     border-right: 1px solid {BORDER};
 }}
 [data-testid="stSidebar"] * {{ font-family: 'Inter', sans-serif; }}
+[data-testid="stSidebarCollapseButton"] span {{ font-family: 'Material Symbols Rounded' !important; }}
 [data-testid="stSidebar"] [data-testid="stSelectbox"] > div > div {{
     background-color: {BG_SURFACE};
     border: 1px solid {BORDER};
