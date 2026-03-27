@@ -90,7 +90,7 @@ def _title_style(text: str, color: str = GOLD) -> dict:
 # ---------------------------------------------------------------------------
 
 def avg_moving_average_chart(game_log: list, player_name: str) -> go.Figure:
-    rows = _last_n(game_log, 5)
+    rows = [r for r in game_log if r]
     dates, avgs = [], []
     cum_h = cum_ab = 0.0
 
@@ -119,13 +119,13 @@ def avg_moving_average_chart(game_log: list, player_name: str) -> go.Figure:
         mode="lines+markers",
         line=dict(color=ROYAL_BLUE, width=2.5),
         marker=dict(size=8, color=GOLD, line=dict(color=ROYAL_BLUE, width=2)),
-        hovertemplate="<b>%{x}</b><br>Cumulative AVG: .%{customdata}<extra></extra>",
+        hovertemplate="<b>%{x}</b><br>Season AVG: .%{customdata}<extra></extra>",
         customdata=fmt,
         name="AVG",
     ))
 
     fig.update_layout(**_layout(
-        title=_title_style(f"{player_name} — AVG Trend"),
+        title=_title_style(f"{player_name} — Season AVG"),
         yaxis=dict(tickformat=".3f", title="AVG", **_BASE_LAYOUT["yaxis"]),
     ))
     return fig
@@ -167,7 +167,7 @@ def totals_bar_chart(
 # ---------------------------------------------------------------------------
 
 def era_moving_average_chart(game_log: list, player_name: str) -> go.Figure:
-    rows = _last_n(game_log, 5)
+    rows = [r for r in game_log if r]
     dates, eras = [], []
     cum_er = cum_ip = 0.0
 
@@ -194,12 +194,12 @@ def era_moving_average_chart(game_log: list, player_name: str) -> go.Figure:
         mode="lines+markers",
         line=dict(color=GOLD, width=2.5),
         marker=dict(size=8, color=ROYAL_BLUE, line=dict(color=GOLD, width=2)),
-        hovertemplate="<b>%{x}</b><br>Rolling ERA: %{y:.2f}<extra></extra>",
+        hovertemplate="<b>%{x}</b><br>Season ERA: %{y:.2f}<extra></extra>",
         name="ERA",
     ))
 
     fig.update_layout(**_layout(
-        title=_title_style(f"{player_name} — ERA Trend", color=GOLD),
+        title=_title_style(f"{player_name} — Season ERA", color=GOLD),
         yaxis=dict(title="ERA", **_BASE_LAYOUT["yaxis"]),
     ))
     return fig

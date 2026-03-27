@@ -8,6 +8,7 @@ import pandas as pd
 import streamlit as st
 from streamlit_extras.stylable_container import stylable_container
 from streamlit_option_menu import option_menu
+from supabase import create_client
 
 import charts
 import scraper
@@ -144,11 +145,9 @@ TEAMS = [
 # ---------------------------------------------------------------------------
 
 _DEFAULTS = {
-    "team": TEAMS[0],
-    "view": "Hitting",
-    "sel_avg": None,
-    "sel_xbh": None,
-    "sel_k":   None,
+    "team":        TEAMS[0],
+    "view":        "Hitting",
+    "sel_hitter":  None,
 }
 for _k, _v in _DEFAULTS.items():
     if _k not in st.session_state:
@@ -156,8 +155,7 @@ for _k, _v in _DEFAULTS.items():
 
 
 def _clear_selections():
-    for k in ("sel_avg", "sel_xbh", "sel_k"):
-        st.session_state[k] = None
+    st.session_state["sel_hitter"] = None
 
 # ---------------------------------------------------------------------------
 # Data loaders
@@ -173,6 +171,33 @@ def load_pitchers():
 
 def load_game_log(slug: str, pos: str = "h") -> list:
     return scraper.scrape_game_log(slug, pos=pos)
+
+# ---------------------------------------------------------------------------
+# Notes (Supabase)
+# ---------------------------------------------------------------------------
+
+@st.cache_resource
+def _supabase():
+    return create_client(
+        st.secrets["supabase"]["url"],
+        st.secrets["supabase"]["key"],
+    )
+
+@st.cache_data(ttl=30, show_spinner=False)
+def load_notes() -> dict:
+    try:
+        res = _supabase().table("notes").select("slug, note").execute()
+        return {r["slug"]: r["note"] for r in res.data}
+    except Exception:
+        return {}
+
+def save_note(slug: str, text: str):
+    sb = _supabase()
+    if text.strip():
+        sb.table("notes").upsert({"slug": slug, "note": text.strip()}).execute()
+    else:
+        sb.table("notes").delete().eq("slug", slug).execute()
+    load_notes.clear()
 
 # ---------------------------------------------------------------------------
 # Sidebar
@@ -394,7 +419,7 @@ if st.session_state.view == "Hitting":
 
     top_avg = team_df.nlargest(9, "avg").dropna(subset=["avg"])
     top_xbh = team_df.nlargest(9, "xbh").dropna(subset=["xbh"])
-    top_k   = team_df.nsmallest(9, "k").dropna(subset=["k"])
+    top_k   = team_df.nlargest(9, "k").dropna(subset=["k"])
 
     # ── Metric cards ──
     m1, m2, m3 = st.columns(3, gap="medium")
@@ -409,57 +434,92 @@ if st.session_state.view == "Hitting":
     with m3:
         if not top_k.empty:
             r = top_k.iloc[0]
-            metric_card("Fewest Strikeouts", f"{fmt_int(r['k'])} K", r["name"], BLUE_LIGHT)
+            metric_card("Strikeout Leader", f"{fmt_int(r['k'])} K", r["name"], BLUE_LIGHT)
 
     st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
 
     # ── Leaderboard cards ──
+    notes = load_notes()
     col1, col2, col3 = st.columns(3, gap="medium")
 
     with col1:
         with _stat_card("avg", ROYAL_BLUE):
-            section_header("Batting Average", ROYAL_BLUE, "Top 9 · click for trend")
+            section_header("Batting Average", ROYAL_BLUE, "Top 9 · click for trends")
             for _, row in top_avg.iterrows():
-                player_btn(f"{row['name']}  ·  {fmt_avg(row['avg'])}", f"avg_{row['slug']}", "sel_avg", row["slug"])
+                marker = "📝 " if row["slug"] in notes else ""
+                player_btn(f"{marker}{row['name']}  ·  {fmt_avg(row['avg'])}", f"avg_{row['slug']}", "sel_hitter", row["slug"])
 
     with col2:
         with _stat_card("xbh", GOLD):
-            section_header("Extra Base Hits", GOLD, "Top 9 · click for trend")
+            section_header("Extra Base Hits", GOLD, "Top 9 · click for trends")
             for _, row in top_xbh.iterrows():
-                player_btn(f"{row['name']}  ·  {fmt_int(row['xbh'])} XBH", f"xbh_{row['slug']}", "sel_xbh", row["slug"])
+                marker = "📝 " if row["slug"] in notes else ""
+                player_btn(f"{marker}{row['name']}  ·  {fmt_int(row['xbh'])} XBH", f"xbh_{row['slug']}", "sel_hitter", row["slug"])
 
     with col3:
         with _stat_card("k", BLUE_LIGHT):
-            section_header("Strikeouts", BLUE_LIGHT, "Fewest 9 · click for trend")
+            section_header("Strikeouts", BLUE_LIGHT, "Most 9 · click for trends")
             for _, row in top_k.iterrows():
-                player_btn(f"{row['name']}  ·  {fmt_int(row['k'])} K", f"k_{row['slug']}", "sel_k", row["slug"])
+                marker = "📝 " if row["slug"] in notes else ""
+                player_btn(f"{marker}{row['name']}  ·  {fmt_int(row['k'])} K", f"k_{row['slug']}", "sel_hitter", row["slug"])
 
-    # ── Chart row ──
-    if any(st.session_state[k] for k in ("sel_avg", "sel_xbh", "sel_k")):
-        st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
-        cc1, cc2, cc3 = st.columns(3, gap="medium")
-        cfg = {"displayModeBar": False}
-
-        def _render(slug, source_df, chart_fn, col):
-            if not slug:
-                return
-            row = source_df[source_df["slug"] == slug]
-            if row.empty:
-                return
+    # ── Charts + table + notes for selected hitter ──
+    slug = st.session_state.sel_hitter
+    if slug:
+        row = team_df[team_df["slug"] == slug]
+        if not row.empty:
             name = row.iloc[0]["name"]
-            with col:
-                with st.spinner(f"Loading {name}…"):
-                    gl = load_game_log(slug, pos="h")
-                if gl:
-                    st.plotly_chart(chart_fn(gl, name), use_container_width=True, config=cfg)
-                else:
-                    st.info("No game log available.")
+            st.markdown("<div style='height:20px'></div>", unsafe_allow_html=True)
 
-        _render(st.session_state.sel_avg, top_avg, charts.avg_moving_average_chart, cc1)
-        _render(st.session_state.sel_xbh, top_xbh,
-                lambda gl, n: charts.totals_bar_chart(gl, "xbh", n, "XBH", color=GOLD), cc2)
-        _render(st.session_state.sel_k,   top_k,
-                lambda gl, n: charts.totals_bar_chart(gl, "k",   n, "K",   color=BLUE_LIGHT), cc3)
+            st.markdown(f"""
+            <div style="margin-bottom:16px; padding:14px 18px;
+                        background:{BG_SURFACE}; border:1px solid {BORDER};
+                        border-left:4px solid {GOLD}; border-radius:8px;
+                        display:flex; align-items:center; gap:12px;">
+                <span style="font-size:18px;">⚾</span>
+                <div>
+                    <div style="font-size:15px; font-weight:700; color:{WHITE};">{name}</div>
+                    <div style="font-size:11px; color:{GRAY}; margin-top:2px;">
+                        AVG trend · Extra base hits · Strikeouts per game
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+            with st.spinner(f"Loading {name}…"):
+                gl = load_game_log(slug, pos="h")
+
+            if gl:
+                cfg = {"displayModeBar": False}
+                cc1, cc2, cc3 = st.columns(3, gap="medium")
+                with cc1:
+                    st.plotly_chart(charts.avg_moving_average_chart(gl, name),
+                                    use_container_width=True, config=cfg)
+                with cc2:
+                    st.plotly_chart(charts.totals_bar_chart(gl, "xbh", name, "XBH", color=GOLD),
+                                    use_container_width=True, config=cfg)
+                with cc3:
+                    st.plotly_chart(charts.totals_bar_chart(gl, "k", name, "K", color=BLUE_LIGHT),
+                                    use_container_width=True, config=cfg)
+
+                # ── Combined game log table ──
+                tbl = pd.DataFrame(gl)[["date", "opponent", "score", "ab", "h", "avg", "xbh", "k"]].copy()
+                tbl.columns = ["Date", "Opponent", "Score", "AB", "H", "AVG", "XBH", "K"]
+                tbl["AVG"] = tbl["AVG"].apply(lambda v: f"{v:.3f}".lstrip("0") if pd.notna(v) else "--")
+                tbl["XBH"] = tbl["XBH"].apply(lambda v: str(int(v)) if pd.notna(v) else "--")
+                tbl["K"]   = tbl["K"].apply(lambda v: str(int(v)) if pd.notna(v) else "--")
+                tbl["AB"]  = tbl["AB"].apply(lambda v: str(int(v)) if pd.notna(v) else "--")
+                tbl["H"]   = tbl["H"].apply(lambda v: str(int(v)) if pd.notna(v) else "--")
+                st.dataframe(tbl, use_container_width=True, hide_index=True)
+            else:
+                st.info("No game log available.")
+
+            # ── Scout notes ──
+            st.markdown(f'<p style="color:{GRAY}; font-size:10px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; margin:16px 0 4px;">Scout Notes</p>', unsafe_allow_html=True)
+            note_text = st.text_area("", value=notes.get(slug, ""), key=f"note_{slug}", height=120, placeholder="Add scouting notes…", label_visibility="collapsed")
+            if st.button("Save Note", key=f"savenote_{slug}"):
+                save_note(slug, note_text)
+                st.rerun()
 
 # ---------------------------------------------------------------------------
 # PITCHING VIEW
@@ -508,8 +568,13 @@ else:
         section_header("Pitching Staff", ROYAL_BLUE, "Sorted by ERA · click row for trends")
 
         # ── Native dataframe with row selection ──
+        notes = load_notes()
         display_df = team_df[["name", "era", "app", "ip", "k", "bb", "whip"]].copy()
         display_df.columns = ["Player", "ERA", "G", "IP", "K", "BB", "WHIP"]
+        display_df["Player"] = [
+            f"📝 {name}" if slug in notes else name
+            for name, slug in zip(team_df["name"], team_df["slug"])
+        ]
 
         event = st.dataframe(
             display_df,
@@ -559,15 +624,38 @@ else:
             if gl:
                 cfg = {"displayModeBar": False}
                 c1, c2, c3 = st.columns(3, gap="medium")
+                gl_df = pd.DataFrame(gl)
+
+                def _pitcher_table(stat_col, stat_label, fmt="float"):
+                    tbl = gl_df[["date", "opponent", "score", stat_col]].copy()
+                    tbl.columns = ["Date", "Opponent", "Score", stat_label]
+                    if fmt == "int":
+                        tbl[stat_label] = tbl[stat_label].apply(
+                            lambda v: str(int(v)) if pd.notna(v) else "--"
+                        )
+                    else:
+                        tbl[stat_label] = tbl[stat_label].apply(
+                            lambda v: f"{v:.2f}" if pd.notna(v) else "--"
+                        )
+                    st.dataframe(tbl, use_container_width=True, hide_index=True)
+
                 with c1:
                     st.plotly_chart(charts.era_moving_average_chart(gl, name),
                                     use_container_width=True, config=cfg)
+                    _pitcher_table("era", "ERA")
                 with c2:
                     st.plotly_chart(charts.totals_bar_chart(gl, "k", name, "K", color=BLUE_LIGHT),
                                     use_container_width=True, config=cfg)
+                    _pitcher_table("k", "K", fmt="int")
                 with c3:
                     st.plotly_chart(charts.pitcher_whip_chart(gl, name),
                                     use_container_width=True, config=cfg)
+                    _pitcher_table("whip", "WHIP")
                 st.caption("BB per game not included in MASCAC game logs — season total shown in table above.")
             else:
                 st.info("No game log data available for this pitcher.")
+            st.markdown(f'<p style="color:{GRAY}; font-size:10px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; margin:16px 0 4px;">Scout Notes</p>', unsafe_allow_html=True)
+            note_text = st.text_area("", value=notes.get(sel_slug, ""), key=f"note_{sel_slug}", height=80, placeholder="Add scouting notes…", label_visibility="collapsed")
+            if st.button("Save Note", key=f"savenote_{sel_slug}"):
+                save_note(sel_slug, note_text)
+                st.rerun()
