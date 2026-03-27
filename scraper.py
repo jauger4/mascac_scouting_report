@@ -218,8 +218,7 @@ def scrape_game_log(slug: str, pos: str = "h", force: bool = False) -> list[dict
         return []
 
     rows = _parse_game_log_soup(soup, pos)
-    if rows:
-        path.write_text(json.dumps(rows, indent=2))
+    path.write_text(json.dumps(rows, indent=2))
     return rows
 
 
@@ -270,7 +269,6 @@ def scrape_all_game_logs(
         try:
             soup = BeautifulSoup(html, "lxml")
             rows = _parse_game_log_soup(soup, pos_map[slug])
-            if rows:
-                (GAME_LOGS_DIR / f"{slug}.json").write_text(json.dumps(rows, indent=2))
+            (GAME_LOGS_DIR / f"{slug}.json").write_text(json.dumps(rows, indent=2))
         except Exception:
             continue
