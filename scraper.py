@@ -146,7 +146,7 @@ def scrape_hitters(force: bool = False) -> list[dict]:
         return _read_cache(path)
 
     try:
-        soup = _fetch_soup_playwright(HITTER_URL)
+        soup = _fetch_soup_playwright(HITTER_URL, wait_col="avg")
         table, headers = _find_table_by_header(soup, "avg")
         if table is None:
             raise RuntimeError("Could not find hitters table on page.")
@@ -167,7 +167,7 @@ def scrape_pitchers(force: bool = False) -> list[dict]:
         return _read_cache(path)
 
     try:
-        soup = _fetch_soup_playwright(PITCHER_URL)
+        soup = _fetch_soup_playwright(PITCHER_URL, wait_col="era")
         table, headers = _find_table_by_header(soup, "era")
         if table is None:
             raise RuntimeError("Could not find pitchers table on page.")
@@ -211,9 +211,9 @@ def _run_worker(tasks: list[dict]) -> list[dict]:
     return json.loads(result.stdout)
 
 
-def _fetch_soup_playwright(url: str) -> BeautifulSoup:
+def _fetch_soup_playwright(url: str, wait_col: str = "") -> BeautifulSoup:
     """Render a JS-heavy page via the subprocess worker and return parsed soup."""
-    results = _run_worker([{"slug": "_single", "url": url}])
+    results = _run_worker([{"slug": "_single", "url": url, "wait_col": wait_col}])
     html = results[0]["html"] if results else ""
     return BeautifulSoup(html, "lxml")
 
@@ -250,9 +250,10 @@ def scrape_game_log(slug: str, pos: str = "h", force: bool = False) -> list[dict
         return _read_cache(path)
 
     url = f"{BASE_URL}/sports/bsb/{SEASON}/players/{slug}?view=gamelog"
+    wait_col = "ab" if pos == "h" else "ip"
 
     try:
-        soup = _fetch_soup_playwright(url)
+        soup = _fetch_soup_playwright(url, wait_col=wait_col)
     except Exception:
         if path.exists():
             return _read_cache(path)
@@ -293,7 +294,11 @@ def scrape_all_game_logs(
         progress_cb(0, len(tasks), tasks[0][0])
 
     worker_tasks = [
-        {"slug": slug, "url": f"{BASE_URL}/sports/bsb/{SEASON}/players/{slug}?view=gamelog"}
+        {
+            "slug": slug,
+            "url": f"{BASE_URL}/sports/bsb/{SEASON}/players/{slug}?view=gamelog",
+            "wait_col": "ab" if pos_map[slug] == "h" else "ip",
+        }
         for slug, _ in tasks
     ]
     pos_map = {slug: pos for slug, pos in tasks}
