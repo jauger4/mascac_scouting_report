@@ -204,7 +204,7 @@ def _run_worker(tasks: list[dict]) -> list[dict]:
         input=json.dumps(tasks),
         capture_output=True,
         text=True,
-        timeout=600,
+        timeout=1800,
     )
     if result.returncode != 0:
         raise RuntimeError(f"scrape_worker failed: {result.stderr[:500]}")
