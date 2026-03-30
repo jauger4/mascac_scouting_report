@@ -10,6 +10,7 @@ import datetime
 import json
 import subprocess
 import sys
+import time
 import requests
 from bs4 import BeautifulSoup
 from pathlib import Path
@@ -39,11 +40,29 @@ HEADERS = {
 # ---------------------------------------------------------------------------
 
 def _is_stale(path: Path, max_age_hours: float) -> bool:
-    """Return True if path does not exist or its mtime is older than max_age_hours."""
+    """Return True if path does not exist or its scraped_at timestamp is older than max_age_hours."""
     if not path.exists():
         return True
-    age = datetime.datetime.now() - datetime.datetime.fromtimestamp(path.stat().st_mtime)
+    try:
+        data = json.loads(path.read_text())
+        scraped_at = data.get("scraped_at", 0)
+    except Exception:
+        return True  # unreadable or old-format file → treat as stale
+    age = datetime.datetime.now() - datetime.datetime.fromtimestamp(scraped_at)
     return age > datetime.timedelta(hours=max_age_hours)
+
+
+def _read_cache(path: Path) -> list[dict]:
+    """Read a cache file, handling both old bare-array and new envelope formats."""
+    data = json.loads(path.read_text())
+    if isinstance(data, list):
+        return data
+    return data.get("rows", [])
+
+
+def _write_cache(path: Path, rows: list[dict]) -> None:
+    """Write rows to a cache file with an embedded scrape timestamp."""
+    path.write_text(json.dumps({"scraped_at": time.time(), "rows": rows}, indent=2))
 
 
 def _clean(val):
@@ -124,7 +143,7 @@ def scrape_hitters(force: bool = False) -> list[dict]:
     path = DATA_DIR / "hitters.json"
 
     if path.exists() and not force and not _is_stale(path, AGGREGATE_TTL_HOURS):
-        return json.loads(path.read_text())
+        return _read_cache(path)
 
     try:
         soup = _fetch_soup(HITTER_URL)
@@ -132,11 +151,11 @@ def scrape_hitters(force: bool = False) -> list[dict]:
         if table is None:
             raise RuntimeError("Could not find hitters table on page.")
         rows = _parse_table(table, headers)
-        path.write_text(json.dumps(rows, indent=2))
+        _write_cache(path, rows)
         return rows
     except Exception:
         if path.exists():
-            return json.loads(path.read_text())
+            return _read_cache(path)
         raise
 
 
@@ -145,7 +164,7 @@ def scrape_pitchers(force: bool = False) -> list[dict]:
     path = DATA_DIR / "pitchers.json"
 
     if path.exists() and not force and not _is_stale(path, AGGREGATE_TTL_HOURS):
-        return json.loads(path.read_text())
+        return _read_cache(path)
 
     try:
         soup = _fetch_soup(PITCHER_URL)
@@ -153,11 +172,11 @@ def scrape_pitchers(force: bool = False) -> list[dict]:
         if table is None:
             raise RuntimeError("Could not find pitchers table on page.")
         rows = _parse_table(table, headers)
-        path.write_text(json.dumps(rows, indent=2))
+        _write_cache(path, rows)
         return rows
     except Exception:
         if path.exists():
-            return json.loads(path.read_text())
+            return _read_cache(path)
         raise
 
 
@@ -228,7 +247,7 @@ def scrape_game_log(slug: str, pos: str = "h", force: bool = False) -> list[dict
     path = GAME_LOGS_DIR / f"{slug}.json"
 
     if path.exists() and not force and not _is_stale(path, CACHE_TTL_HOURS):
-        return json.loads(path.read_text())
+        return _read_cache(path)
 
     url = f"{BASE_URL}/sports/bsb/{SEASON}/players/{slug}?view=gamelog"
 
@@ -236,11 +255,11 @@ def scrape_game_log(slug: str, pos: str = "h", force: bool = False) -> list[dict
         soup = _fetch_soup_playwright(url)
     except Exception:
         if path.exists():
-            return json.loads(path.read_text())
+            return _read_cache(path)
         return []
 
     rows = _parse_game_log_soup(soup, pos)
-    path.write_text(json.dumps(rows, indent=2))
+    _write_cache(path, rows)
     return rows
 
 
@@ -291,6 +310,6 @@ def scrape_all_game_logs(
         try:
             soup = BeautifulSoup(html, "lxml")
             rows = _parse_game_log_soup(soup, pos_map[slug])
-            (GAME_LOGS_DIR / f"{slug}.json").write_text(json.dumps(rows, indent=2))
+            _write_cache(GAME_LOGS_DIR / f"{slug}.json", rows)
         except Exception:
             continue
