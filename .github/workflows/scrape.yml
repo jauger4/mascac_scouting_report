@@ -1,0 +1,41 @@
+name: Scrape MASCAC Data
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install playwright requests beautifulsoup4 lxml
+          playwright install chromium --with-deps
+
+      - name: Scrape all data
+        run: |
+          python - <<'EOF'
+          import scraper
+          hitters = scraper.scrape_hitters(force=True)
+          pitchers = scraper.scrape_pitchers(force=True)
+          scraper.scrape_all_game_logs(hitters, pitchers, force=True)
+          print(f"Done: {len(hitters)} hitters, {len(pitchers)} pitchers")
+          EOF
+
+      - name: Commit updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git diff --staged --quiet || git commit -m "Auto-update scraped data"
+          git push
