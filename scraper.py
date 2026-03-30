@@ -6,6 +6,7 @@ Game logs are scraped on demand per player and cached individually.
 Call refresh_aggregate() to force-update season totals.
 """
 
+import datetime
 import json
 import subprocess
 import sys
@@ -21,6 +22,9 @@ PITCHER_URL = f"{BASE_URL}/sports/bsb/{SEASON}/players?pos=p&sort=era&jsRenderin
 DATA_DIR = Path("data")
 GAME_LOGS_DIR = DATA_DIR / "game_logs"
 
+CACHE_TTL_HOURS = 6       # hours before a game log is re-scraped
+AGGREGATE_TTL_HOURS = 6   # hours before hitters.json / pitchers.json is re-scraped
+
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -33,6 +37,14 @@ HEADERS = {
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
+
+def _is_stale(path: Path, max_age_hours: float) -> bool:
+    """Return True if path does not exist or its mtime is older than max_age_hours."""
+    if not path.exists():
+        return True
+    age = datetime.datetime.now() - datetime.datetime.fromtimestamp(path.stat().st_mtime)
+    return age > datetime.timedelta(hours=max_age_hours)
+
 
 def _clean(val):
     """Normalize empty/dash cells to None; coerce numbers."""
@@ -111,34 +123,42 @@ def scrape_hitters(force: bool = False) -> list[dict]:
     DATA_DIR.mkdir(exist_ok=True)
     path = DATA_DIR / "hitters.json"
 
-    if path.exists() and not force:
+    if path.exists() and not force and not _is_stale(path, AGGREGATE_TTL_HOURS):
         return json.loads(path.read_text())
 
-    soup = _fetch_soup(HITTER_URL)
-    table, headers = _find_table_by_header(soup, "avg")
-    if table is None:
-        raise RuntimeError("Could not find hitters table on page.")
-
-    rows = _parse_table(table, headers)
-    path.write_text(json.dumps(rows, indent=2))
-    return rows
+    try:
+        soup = _fetch_soup(HITTER_URL)
+        table, headers = _find_table_by_header(soup, "avg")
+        if table is None:
+            raise RuntimeError("Could not find hitters table on page.")
+        rows = _parse_table(table, headers)
+        path.write_text(json.dumps(rows, indent=2))
+        return rows
+    except Exception:
+        if path.exists():
+            return json.loads(path.read_text())
+        raise
 
 
 def scrape_pitchers(force: bool = False) -> list[dict]:
     DATA_DIR.mkdir(exist_ok=True)
     path = DATA_DIR / "pitchers.json"
 
-    if path.exists() and not force:
+    if path.exists() and not force and not _is_stale(path, AGGREGATE_TTL_HOURS):
         return json.loads(path.read_text())
 
-    soup = _fetch_soup(PITCHER_URL)
-    table, headers = _find_table_by_header(soup, "era")
-    if table is None:
-        raise RuntimeError("Could not find pitchers table on page.")
-
-    rows = _parse_table(table, headers)
-    path.write_text(json.dumps(rows, indent=2))
-    return rows
+    try:
+        soup = _fetch_soup(PITCHER_URL)
+        table, headers = _find_table_by_header(soup, "era")
+        if table is None:
+            raise RuntimeError("Could not find pitchers table on page.")
+        rows = _parse_table(table, headers)
+        path.write_text(json.dumps(rows, indent=2))
+        return rows
+    except Exception:
+        if path.exists():
+            return json.loads(path.read_text())
+        raise
 
 
 def refresh_aggregate():
@@ -207,7 +227,7 @@ def scrape_game_log(slug: str, pos: str = "h", force: bool = False) -> list[dict
     GAME_LOGS_DIR.mkdir(parents=True, exist_ok=True)
     path = GAME_LOGS_DIR / f"{slug}.json"
 
-    if path.exists() and not force:
+    if path.exists() and not force and not _is_stale(path, CACHE_TTL_HOURS):
         return json.loads(path.read_text())
 
     url = f"{BASE_URL}/sports/bsb/{SEASON}/players/{slug}?view=gamelog"
@@ -215,6 +235,8 @@ def scrape_game_log(slug: str, pos: str = "h", force: bool = False) -> list[dict
     try:
         soup = _fetch_soup_playwright(url)
     except Exception:
+        if path.exists():
+            return json.loads(path.read_text())
         return []
 
     rows = _parse_game_log_soup(soup, pos)
@@ -242,7 +264,7 @@ def scrape_all_game_logs(
         if not slug or slug in seen:
             continue
         seen.add(slug)
-        if force or not (GAME_LOGS_DIR / f"{slug}.json").exists():
+        if force or _is_stale(GAME_LOGS_DIR / f"{slug}.json", CACHE_TTL_HOURS):
             tasks.append((slug, pos))
 
     if not tasks:

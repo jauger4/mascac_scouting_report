@@ -162,11 +162,11 @@ def _clear_selections():
 # Data loaders
 # ---------------------------------------------------------------------------
 
-@st.cache_data(show_spinner=False)
+@st.cache_data(ttl=3600, show_spinner=False)
 def load_hitters():
     return scraper.scrape_hitters()
 
-@st.cache_data(show_spinner=False)
+@st.cache_data(ttl=3600, show_spinner=False)
 def load_pitchers():
     return scraper.scrape_pitchers()
 
@@ -252,28 +252,6 @@ with st.sidebar:
         _clear_selections()
         st.rerun()
 
-    st.markdown(f'<hr style="border-color:{BORDER}; margin:18px 0 14px;">', unsafe_allow_html=True)
-
-    if st.button("↻  Refresh Data", use_container_width=True):
-        load_hitters.clear()
-        load_pitchers.clear()
-        try:
-            scraper.refresh_aggregate()
-        except Exception as e:
-            st.warning(f"Aggregate stats re-scrape failed ({e}); using cached totals.")
-        _clear_selections()
-        hitters_all = scraper.scrape_hitters()
-        pitchers_all = scraper.scrape_pitchers()
-        prog = st.progress(0, text="Fetching game logs…")
-
-        def _progress(current, total, slug):
-            prog.progress((current + 1) / total, text=f"Game logs: {current + 1} / {total}")
-
-        scraper.scrape_all_game_logs(hitters_all, pitchers_all, force=True, progress_cb=_progress)
-        prog.empty()
-        st.rerun()
-
-    st.markdown(f'<p style="color:{BORDER}; font-size:10px; text-align:center; margin-top:10px;">Stats cached locally · click to update</p>', unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
 # Reusable HTML components
@@ -415,7 +393,7 @@ if st.session_state.view == "Hitting":
     team_df = df[df.get("team", pd.Series(dtype=str)) == st.session_state.team].copy()
 
     if team_df.empty:
-        st.warning("No hitting data found for this team. Try **Refresh Data**.")
+        st.warning("No hitting data found for this team.")
         st.stop()
 
     top_avg = team_df.nlargest(9, "avg").dropna(subset=["avg"])
@@ -538,7 +516,7 @@ else:
     team_df = df[df.get("team", pd.Series(dtype=str)) == st.session_state.team].copy()
 
     if team_df.empty:
-        st.warning("No pitching data found for this team. Try **Refresh Data**.")
+        st.warning("No pitching data found for this team.")
         st.stop()
 
     team_df = team_df.sort_values("era", ascending=True, na_position="last").reset_index(drop=True)
