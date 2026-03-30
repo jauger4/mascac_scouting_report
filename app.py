@@ -4,7 +4,6 @@ Plugins: streamlit-extras (stylable_container) · streamlit-option-menu
 Color scheme: Royal Blue · Gold · Dark Navy / White
 """
 
-import subprocess
 import pandas as pd
 import streamlit as st
 from streamlit_extras.stylable_container import stylable_container
@@ -13,8 +12,6 @@ from supabase import create_client
 
 import charts
 import scraper
-
-subprocess.run(["playwright", "install", "chromium"], capture_output=True)
 
 # ---------------------------------------------------------------------------
 # Page config

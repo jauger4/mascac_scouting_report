@@ -9,7 +9,10 @@ Run via scraper.py only — not intended to be invoked directly.
 """
 
 import json
+import subprocess
 import sys
+
+subprocess.run([sys.executable, "-m", "playwright", "install", "chromium"], capture_output=True)
 
 from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
 
