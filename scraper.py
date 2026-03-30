@@ -293,6 +293,7 @@ def scrape_all_game_logs(
     if progress_cb:
         progress_cb(0, len(tasks), tasks[0][0])
 
+    pos_map = {slug: pos for slug, pos in tasks}
     worker_tasks = [
         {
             "slug": slug,
@@ -301,7 +302,6 @@ def scrape_all_game_logs(
         }
         for slug, _ in tasks
     ]
-    pos_map = {slug: pos for slug, pos in tasks}
 
     results = _run_worker(worker_tasks)
 
