@@ -146,7 +146,7 @@ def scrape_hitters(force: bool = False) -> list[dict]:
         return _read_cache(path)
 
     try:
-        soup = _fetch_soup(HITTER_URL)
+        soup = _fetch_soup_playwright(HITTER_URL)
         table, headers = _find_table_by_header(soup, "avg")
         if table is None:
             raise RuntimeError("Could not find hitters table on page.")
@@ -167,7 +167,7 @@ def scrape_pitchers(force: bool = False) -> list[dict]:
         return _read_cache(path)
 
     try:
-        soup = _fetch_soup(PITCHER_URL)
+        soup = _fetch_soup_playwright(PITCHER_URL)
         table, headers = _find_table_by_header(soup, "era")
         if table is None:
             raise RuntimeError("Could not find pitchers table on page.")
