@@ -211,9 +211,9 @@ def _run_worker(tasks: list[dict]) -> list[dict]:
     return json.loads(result.stdout)
 
 
-def _fetch_soup_playwright(url: str, wait_col: str = "") -> BeautifulSoup:
+def _fetch_soup_playwright(url: str, wait_col: str = "", wait_networkidle: bool = False) -> BeautifulSoup:
     """Render a JS-heavy page via the subprocess worker and return parsed soup."""
-    results = _run_worker([{"slug": "_single", "url": url, "wait_col": wait_col}])
+    results = _run_worker([{"slug": "_single", "url": url, "wait_col": wait_col, "wait_networkidle": wait_networkidle}])
     html = results[0]["html"] if results else ""
     return BeautifulSoup(html, "lxml")
 
@@ -253,7 +253,7 @@ def scrape_game_log(slug: str, pos: str = "h", force: bool = False) -> list[dict
     wait_col = "ab" if pos == "h" else "ip"
 
     try:
-        soup = _fetch_soup_playwright(url, wait_col=wait_col)
+        soup = _fetch_soup_playwright(url, wait_col=wait_col, wait_networkidle=True)
     except Exception:
         if path.exists():
             return _read_cache(path)
@@ -299,6 +299,7 @@ def scrape_all_game_logs(
             "slug": slug,
             "url": f"{BASE_URL}/sports/bsb/{SEASON}/players/{slug}?view=gamelog",
             "wait_col": "ab" if pos_map[slug] == "h" else "ip",
+            "wait_networkidle": True,
         }
         for slug, _ in tasks
     ]

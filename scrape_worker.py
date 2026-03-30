@@ -46,6 +46,11 @@ with sync_playwright() as pw:
         wait_js = _wait_js_for_col(wait_col) if wait_col else _WAIT_JS_GENERIC
         try:
             page.goto(task["url"], wait_until="domcontentloaded", timeout=30000)
+            if task.get("wait_networkidle"):
+                try:
+                    page.wait_for_load_state("networkidle", timeout=15000)
+                except PWTimeout:
+                    pass
             try:
                 page.wait_for_function(wait_js, timeout=15000)
             except PWTimeout:
