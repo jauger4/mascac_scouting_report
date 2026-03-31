@@ -237,12 +237,19 @@ def _parse_game_log_soup(soup: BeautifulSoup, pos: str) -> list[dict]:
     return rows
 
 
-def read_game_log_cache(slug: str) -> tuple[list[dict], float | None]:
+def _game_log_path(slug: str, pos: str = "h") -> Path:
+    """Return the cache file path for a player's game log."""
+    suffix = "_p" if pos == "p" else ""
+    return GAME_LOGS_DIR / f"{slug}{suffix}.json"
+
+
+def read_game_log_cache(slug: str, pos: str = "h") -> tuple[list[dict], float | None]:
     """
     Read a player's game log from cache only — never triggers a scrape.
+    pos="h" reads {slug}.json; pos="p" reads {slug}_p.json.
     Returns (rows, scraped_at_timestamp) or ([], None) if no cache file exists.
     """
-    path = GAME_LOGS_DIR / f"{slug}.json"
+    path = _game_log_path(slug, pos)
     if not path.exists():
         return [], None
     try:
@@ -261,7 +268,7 @@ def scrape_game_log(slug: str, pos: str = "h", force: bool = False) -> list[dict
     pos="p" for pitchers (looks for pitching table with 'ip' column).
     """
     GAME_LOGS_DIR.mkdir(parents=True, exist_ok=True)
-    path = GAME_LOGS_DIR / f"{slug}.json"
+    path = _game_log_path(slug, pos)
 
     if path.exists() and not force and not _is_stale(path, CACHE_TTL_HOURS):
         return _read_cache(path)
@@ -289,19 +296,24 @@ def scrape_all_game_logs(
 ) -> None:
     """
     Bulk-scrape game logs for all players using a single shared Playwright browser.
-    Skips players whose cache file already exists (unless force=True).
+    Hitters and pitchers use separate seen sets so two-way players get both logs.
+    Hitter logs → {slug}.json; pitcher logs → {slug}_p.json.
     progress_cb(current, total, slug) is called before each fetch.
     """
     GAME_LOGS_DIR.mkdir(parents=True, exist_ok=True)
 
     tasks: list[tuple[str, str]] = []
-    seen: set[str] = set()
+    seen_h: set[str] = set()
+    seen_p: set[str] = set()
     for player, pos in [(p, "h") for p in hitters] + [(p, "p") for p in pitchers]:
         slug = player.get("slug")
-        if not slug or slug in seen:
+        if not slug:
+            continue
+        seen = seen_h if pos == "h" else seen_p
+        if slug in seen:
             continue
         seen.add(slug)
-        if force or _is_stale(GAME_LOGS_DIR / f"{slug}.json", CACHE_TTL_HOURS):
+        if force or _is_stale(_game_log_path(slug, pos), CACHE_TTL_HOURS):
             tasks.append((slug, pos))
 
     if not tasks:
@@ -310,21 +322,22 @@ def scrape_all_game_logs(
     if progress_cb:
         progress_cb(0, len(tasks), tasks[0][0])
 
-    pos_map = {slug: pos for slug, pos in tasks}
+    # Encode pos into the slug field so two-way players can appear twice in worker results
     worker_tasks = [
         {
-            "slug": slug,
+            "slug": f"{slug}|{pos}",
             "url": f"{BASE_URL}/sports/bsb/{SEASON}/players/{slug}?view=gamelog",
-            "wait_col": "ab" if pos_map[slug] == "h" else "ip",
+            "wait_col": "ab" if pos == "h" else "ip",
             "wait_networkidle": True,
         }
-        for slug, _ in tasks
+        for slug, pos in tasks
     ]
 
     results = _run_worker(worker_tasks)
 
     for i, result in enumerate(results):
-        slug = result["slug"]
+        slug_pos = result["slug"]
+        slug, pos = slug_pos.rsplit("|", 1)
         html = result.get("html", "")
         if progress_cb:
             progress_cb(i + 1, len(tasks), slug)
@@ -332,8 +345,8 @@ def scrape_all_game_logs(
             continue
         try:
             soup = BeautifulSoup(html, "lxml")
-            rows = _parse_game_log_soup(soup, pos_map[slug])
-            path = GAME_LOGS_DIR / f"{slug}.json"
+            rows = _parse_game_log_soup(soup, pos)
+            path = _game_log_path(slug, pos)
             if rows:
                 _write_cache(path, rows)
             elif not path.exists():

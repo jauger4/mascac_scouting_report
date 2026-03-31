@@ -125,7 +125,7 @@ def avg_moving_average_chart(game_log: list, player_name: str) -> go.Figure:
     ))
 
     fig.update_layout(**_layout(
-        title=_title_style(f"{player_name} — Season AVG"),
+        title=_title_style(f"{player_name} — AVG (Last 5 G)"),
         yaxis=dict(tickformat=".3f", title="AVG", **_BASE_LAYOUT["yaxis"]),
     ))
     return fig

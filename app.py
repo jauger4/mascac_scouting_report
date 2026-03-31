@@ -475,15 +475,16 @@ if st.session_state.view == "Hitting":
 
             if gl:
                 cfg = {"displayModeBar": False}
+                gl5 = gl[-5:]
                 cc1, cc2, cc3 = st.columns(3, gap="medium")
                 with cc1:
-                    st.plotly_chart(charts.avg_moving_average_chart(gl, name),
+                    st.plotly_chart(charts.avg_moving_average_chart(gl5, name),
                                     use_container_width=True, config=cfg)
                 with cc2:
-                    st.plotly_chart(charts.totals_bar_chart(gl, "xbh", name, "XBH", color=GOLD),
+                    st.plotly_chart(charts.totals_bar_chart(gl5, "xbh", name, "XBH", color=GOLD),
                                     use_container_width=True, config=cfg)
                 with cc3:
-                    st.plotly_chart(charts.totals_bar_chart(gl, "k", name, "K", color=BLUE_LIGHT),
+                    st.plotly_chart(charts.totals_bar_chart(gl5, "k", name, "K", color=BLUE_LIGHT),
                                     use_container_width=True, config=cfg)
 
                 # ── Combined game log table ──
@@ -517,6 +518,8 @@ else:
     for col in ["era", "k", "bb", "whip", "ip", "app"]:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors="coerce")
+    if "era" in df.columns:
+        df["era"] = df["era"].fillna(0.0)
 
     team_df = df[df.get("team", pd.Series(dtype=str)) == st.session_state.team].copy()
 
@@ -602,7 +605,7 @@ else:
             </div>
             """, unsafe_allow_html=True)
 
-            gl, scraped_at = load_game_log(sel_slug)
+            gl, scraped_at = scraper.read_game_log_cache(sel_slug, pos="p")
 
             if scraped_at:
                 import datetime as _dt
