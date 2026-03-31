@@ -333,6 +333,11 @@ def scrape_all_game_logs(
         try:
             soup = BeautifulSoup(html, "lxml")
             rows = _parse_game_log_soup(soup, pos_map[slug])
-            _write_cache(GAME_LOGS_DIR / f"{slug}.json", rows)
+            path = GAME_LOGS_DIR / f"{slug}.json"
+            if rows:
+                _write_cache(path, rows)
+            elif not path.exists():
+                _write_cache(path, rows)
+            # If rows is empty and an old file exists, keep the old data
         except Exception:
             continue
