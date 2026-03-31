@@ -1,4 +1,69 @@
 {
-  "scraped_at": 1774921493.8992908,
-  "rows": []
+  "scraped_at": 1774923373.2708352,
+  "rows": [
+    {
+      "date": "Feb 28",
+      "opponent": "at John Jay",
+      "score": "W, 7-4",
+      "w": 1.0,
+      "l": 0.0,
+      "ip": 5.1,
+      "h": 7.0,
+      "r": 3.0,
+      "er": 3.0,
+      "era": 5.06,
+      "k": 6.0,
+      "k/9": 10.13,
+      "hr": null,
+      "whip": 1.69
+    },
+    {
+      "date": "Mar 14",
+      "opponent": "Vermont State Lyndon",
+      "score": "L, 7-4",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 6.0,
+      "h": 4.0,
+      "r": 1.0,
+      "er": 1.0,
+      "era": 1.5,
+      "k": 13.0,
+      "k/9": 19.5,
+      "hr": null,
+      "whip": 0.83
+    },
+    {
+      "date": "Mar 21",
+      "opponent": "Gordon",
+      "score": "W, 4-0",
+      "w": 1.0,
+      "l": 0.0,
+      "ip": 7.0,
+      "h": 4.0,
+      "r": 0.0,
+      "er": 0.0,
+      "era": 0.0,
+      "k": 9.0,
+      "k/9": 11.57,
+      "hr": null,
+      "whip": 1.0
+    },
+    {
+      "date": "Mar 29",
+      "opponent": "Framingham St.",
+      "score": "W, 7-5",
+      "w": 1.0,
+      "l": 0.0,
+      "ip": 7.0,
+      "h": 6.0,
+      "r": 5.0,
+      "er": 1.0,
+      "era": 1.29,
+      "k": 10.0,
+      "k/9": 12.86,
+      "hr": null,
+      "whip": 0.86
+    }
+  ]
 }
