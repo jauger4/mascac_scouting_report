@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1774835210.6398318,
+  "scraped_at": 1774923194.9253159,
   "rows": [
     {
       "rk": 1.0,
@@ -171,78 +171,54 @@
     },
     {
       "rk": 8.0,
-      "slug": "camharringtonblvn",
-      "name": "C Harrington",
+      "slug": "jakejasminski64k3",
+      "name": "J Jasminski",
       "team": "MCLA",
-      "era": 3.38,
-      "w": 2.0,
-      "l": 0.0,
-      "app": 5.0,
-      "gs": 3.0,
+      "era": 2.82,
+      "w": 1.0,
+      "l": 2.0,
+      "app": 4.0,
+      "gs": 4.0,
       "sv": 0.0,
-      "ip": 21.1,
-      "h": 16.0,
+      "ip": 22.1,
+      "h": 19.0,
       "r": 10.0,
-      "er": 8.0,
-      "bb": 15.0,
-      "k": 29.0,
-      "k/9": 12.23,
+      "er": 7.0,
+      "bb": 4.0,
+      "k": 16.0,
+      "k/9": 6.45,
       "hr": 1.0,
-      "whip": 1.45,
-      "bf": 95.0,
-      "wp": null,
-      "hbp": 3.0
+      "whip": 1.03,
+      "bf": 96.0,
+      "wp": 1.0,
+      "hbp": 6.0
     },
     {
       "rk": 9.0,
-      "slug": "johndaleylyjv",
-      "name": "J Daley",
-      "team": "Anna Maria",
-      "era": 3.48,
+      "slug": "camharringtonblvn",
+      "name": "C Harrington",
+      "team": "MCLA",
+      "era": 2.96,
       "w": 2.0,
       "l": 1.0,
       "app": 6.0,
       "gs": 4.0,
       "sv": 0.0,
-      "ip": 20.2,
-      "h": 16.0,
-      "r": 11.0,
-      "er": 8.0,
-      "bb": 15.0,
-      "k": 23.0,
-      "k/9": 10.02,
-      "hr": null,
-      "whip": 1.5,
-      "bf": 95.0,
-      "wp": 3.0,
-      "hbp": 5.0
+      "ip": 27.1,
+      "h": 22.0,
+      "r": 12.0,
+      "er": 9.0,
+      "bb": 18.0,
+      "k": 35.0,
+      "k/9": 11.52,
+      "hr": 1.0,
+      "whip": 1.46,
+      "bf": 122.0,
+      "wp": null,
+      "hbp": 3.0
     },
     {
       "rk": 10.0,
-      "slug": "jakejasminski64k3",
-      "name": "J Jasminski",
-      "team": "MCLA",
-      "era": 4.11,
-      "w": 1.0,
-      "l": 2.0,
-      "app": 3.0,
-      "gs": 3.0,
-      "sv": 0.0,
-      "ip": 15.1,
-      "h": 11.0,
-      "r": 10.0,
-      "er": 7.0,
-      "bb": 3.0,
-      "k": 12.0,
-      "k/9": 7.04,
-      "hr": 1.0,
-      "whip": 0.91,
-      "bf": 65.0,
-      "wp": 1.0,
-      "hbp": 5.0
-    },
-    {
-      "rk": 11.0,
       "slug": "mattdirenzo5hax",
       "name": "M Direnzo",
       "team": "Worcester St.",
@@ -266,7 +242,7 @@
       "hbp": null
     },
     {
-      "rk": 11.0,
+      "rk": 10.0,
       "slug": "nolanturner82k9",
       "name": "N Turner",
       "team": "Worcester St.",
@@ -290,7 +266,7 @@
       "hbp": 6.0
     },
     {
-      "rk": 13.0,
+      "rk": 12.0,
       "slug": "seanhallisseyvim2",
       "name": "S Hallissey",
       "team": "Mass. Maritime",
@@ -314,7 +290,7 @@
       "hbp": 1.0
     },
     {
-      "rk": 14.0,
+      "rk": 13.0,
       "slug": "jackorourke3od4",
       "name": "J O'Rourke",
       "team": "Mass. Maritime",
@@ -338,7 +314,7 @@
       "hbp": 4.0
     },
     {
-      "rk": 15.0,
+      "rk": 14.0,
       "slug": "patrickchapin7x5g",
       "name": "P Chapin",
       "team": "Bridgewater St.",
@@ -362,7 +338,7 @@
       "hbp": 2.0
     },
     {
-      "rk": 16.0,
+      "rk": 15.0,
       "slug": "williamernstbhhj",
       "name": "W Ernst",
       "team": "Fitchburg St.",
@@ -386,7 +362,7 @@
       "hbp": 3.0
     },
     {
-      "rk": 17.0,
+      "rk": 16.0,
       "slug": "ethanhillisij",
       "name": "E Hill",
       "team": "Salem St.",
@@ -410,7 +386,7 @@
       "hbp": 3.0
     },
     {
-      "rk": 18.0,
+      "rk": 17.0,
       "slug": "treyyesu68an",
       "name": "T Yesu",
       "team": "Bridgewater St.",
@@ -434,7 +410,7 @@
       "hbp": 5.0
     },
     {
-      "rk": 19.0,
+      "rk": 18.0,
       "slug": "seanmcnamarabh45",
       "name": "S McNamara",
       "team": "Westfield St.",
@@ -458,7 +434,7 @@
       "hbp": 7.0
     },
     {
-      "rk": 20.0,
+      "rk": 19.0,
       "slug": "chasedwightfaez",
       "name": "C Dwight",
       "team": "Mass. Maritime",
