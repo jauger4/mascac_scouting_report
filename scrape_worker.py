@@ -14,7 +14,7 @@ import sys
 
 from playwright.async_api import async_playwright, TimeoutError as PWTimeout
 
-_CONCURRENCY = 5
+_CONCURRENCY = 2
 
 _WAIT_JS_GENERIC = """() => {
     const tables = document.querySelectorAll('table');
@@ -50,7 +50,7 @@ async def _fetch_one(browser, sem, task):
                 except PWTimeout:
                     pass
             try:
-                await page.wait_for_function(wait_js, timeout=15000)
+                await page.wait_for_function(wait_js, timeout=30000)
             except PWTimeout:
                 pass
             html = await page.content()
