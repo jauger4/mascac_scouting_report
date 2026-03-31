@@ -1,3 +1,4 @@
+
 name: Scrape MASCAC Data
 
 on:
@@ -25,13 +26,12 @@ jobs:
           pip install playwright requests beautifulsoup4 lxml
           playwright install chromium --with-deps
 
-      - name: Scrape all data
+      - name: Scrape aggregate stats
         run: |
           python - <<'EOF'
           import scraper
           hitters = scraper.scrape_hitters(force=True)
           pitchers = scraper.scrape_pitchers(force=True)
-          scraper.scrape_all_game_logs(hitters, pitchers, force=True)
           print(f"Done: {len(hitters)} hitters, {len(pitchers)} pitchers")
           EOF
 
