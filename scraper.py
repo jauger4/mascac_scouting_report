@@ -237,6 +237,23 @@ def _parse_game_log_soup(soup: BeautifulSoup, pos: str) -> list[dict]:
     return rows
 
 
+def read_game_log_cache(slug: str) -> tuple[list[dict], float | None]:
+    """
+    Read a player's game log from cache only — never triggers a scrape.
+    Returns (rows, scraped_at_timestamp) or ([], None) if no cache file exists.
+    """
+    path = GAME_LOGS_DIR / f"{slug}.json"
+    if not path.exists():
+        return [], None
+    try:
+        data = json.loads(path.read_text())
+        if isinstance(data, list):
+            return data, None
+        return data.get("rows", []), data.get("scraped_at")
+    except Exception:
+        return [], None
+
+
 def scrape_game_log(slug: str, pos: str = "h", force: bool = False) -> list[dict]:
     """
     Fetch and cache a player's game log.

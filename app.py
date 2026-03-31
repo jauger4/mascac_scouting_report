@@ -170,8 +170,8 @@ def load_hitters():
 def load_pitchers():
     return scraper.scrape_pitchers()
 
-def load_game_log(slug: str, pos: str = "h") -> list:
-    return scraper.scrape_game_log(slug, pos=pos)
+def load_game_log(slug: str) -> tuple[list, float | None]:
+    return scraper.read_game_log_cache(slug)
 
 # ---------------------------------------------------------------------------
 # Notes (Supabase)
@@ -465,8 +465,13 @@ if st.session_state.view == "Hitting":
             </div>
             """, unsafe_allow_html=True)
 
-            with st.spinner(f"Loading {name}…"):
-                gl = load_game_log(slug, pos="h")
+            gl, scraped_at = load_game_log(slug)
+
+            if scraped_at:
+                import datetime as _dt
+                age_min = int((_dt.datetime.now() - _dt.datetime.fromtimestamp(scraped_at)).total_seconds() / 60)
+                age_str = f"{age_min // 60}h {age_min % 60}m ago" if age_min >= 60 else f"{age_min}m ago"
+                st.caption(f"Data refreshed {age_str}")
 
             if gl:
                 cfg = {"displayModeBar": False}
@@ -491,7 +496,7 @@ if st.session_state.view == "Hitting":
                 tbl["H"]   = tbl["H"].apply(lambda v: str(int(v)) if pd.notna(v) else "--")
                 st.dataframe(tbl, use_container_width=True, hide_index=True)
             else:
-                st.info("No game log available.")
+                st.info("Game log not yet available — data refreshes every 6 hours via GitHub Actions.")
 
             # ── Scout notes ──
             st.markdown(f'<p style="color:{GRAY}; font-size:10px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; margin:16px 0 4px;">Scout Notes</p>', unsafe_allow_html=True)
@@ -597,8 +602,13 @@ else:
             </div>
             """, unsafe_allow_html=True)
 
-            with st.spinner(f"Loading {name}'s game log…"):
-                gl = load_game_log(sel_slug, pos="p")
+            gl, scraped_at = load_game_log(sel_slug)
+
+            if scraped_at:
+                import datetime as _dt
+                age_min = int((_dt.datetime.now() - _dt.datetime.fromtimestamp(scraped_at)).total_seconds() / 60)
+                age_str = f"{age_min // 60}h {age_min % 60}m ago" if age_min >= 60 else f"{age_min}m ago"
+                st.caption(f"Data refreshed {age_str}")
 
             if gl:
                 cfg = {"displayModeBar": False}
@@ -632,7 +642,7 @@ else:
                     _pitcher_table("whip", "WHIP")
                 st.caption("BB per game not included in MASCAC game logs — season total shown in table above.")
             else:
-                st.info("No game log data available for this pitcher.")
+                st.info("Game log not yet available — data refreshes every 6 hours via GitHub Actions.")
             st.markdown(f'<p style="color:{GRAY}; font-size:10px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; margin:16px 0 4px;">Scout Notes</p>', unsafe_allow_html=True)
             note_text = st.text_area("", value=notes.get(sel_slug, ""), key=f"note_{sel_slug}", height=80, placeholder="Add scouting notes…", label_visibility="collapsed")
             if st.button("Save Note", key=f"savenote_{sel_slug}"):
