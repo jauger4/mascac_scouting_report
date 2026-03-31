@@ -615,35 +615,27 @@ else:
 
             if gl:
                 cfg = {"displayModeBar": False}
+                gl5 = gl[-5:]
                 c1, c2, c3 = st.columns(3, gap="medium")
-                gl_df = pd.DataFrame(gl)
-
-                def _pitcher_table(stat_col, stat_label, fmt="float"):
-                    tbl = gl_df[["date", "opponent", "score", stat_col]].copy()
-                    tbl.columns = ["Date", "Opponent", "Score", stat_label]
-                    if fmt == "int":
-                        tbl[stat_label] = tbl[stat_label].apply(
-                            lambda v: str(int(v)) if pd.notna(v) else "--"
-                        )
-                    else:
-                        tbl[stat_label] = tbl[stat_label].apply(
-                            lambda v: f"{v:.2f}" if pd.notna(v) else "--"
-                        )
-                    st.dataframe(tbl, use_container_width=True, hide_index=True)
-
                 with c1:
-                    st.plotly_chart(charts.era_moving_average_chart(gl, name),
+                    st.plotly_chart(charts.era_moving_average_chart(gl5, name),
                                     use_container_width=True, config=cfg)
-                    _pitcher_table("era", "ERA")
                 with c2:
-                    st.plotly_chart(charts.totals_bar_chart(gl, "k", name, "K", color=BLUE_LIGHT),
+                    st.plotly_chart(charts.totals_bar_chart(gl5, "k", name, "K", color=BLUE_LIGHT),
                                     use_container_width=True, config=cfg)
-                    _pitcher_table("k", "K", fmt="int")
                 with c3:
-                    st.plotly_chart(charts.pitcher_whip_chart(gl, name),
+                    st.plotly_chart(charts.pitcher_whip_chart(gl5, name),
                                     use_container_width=True, config=cfg)
-                    _pitcher_table("whip", "WHIP")
-                st.caption("BB per game not included in MASCAC game logs — season total shown in table above.")
+
+                # ── Combined game log table ──
+                gl5_df = pd.DataFrame(gl5)
+                tbl = gl5_df[["date", "opponent", "score", "ip", "h", "er", "k", "whip"]].copy()
+                tbl.columns = ["Date", "Opponent", "Score", "IP", "H", "ER", "K", "WHIP"]
+                tbl["IP"]   = tbl["IP"].apply(lambda v: f"{v:.1f}" if pd.notna(v) else "--")
+                tbl["WHIP"] = tbl["WHIP"].apply(lambda v: f"{v:.2f}" if pd.notna(v) else "--")
+                for col in ["H", "ER", "K"]:
+                    tbl[col] = tbl[col].apply(lambda v: str(int(v)) if pd.notna(v) else "--")
+                st.dataframe(tbl, use_container_width=True, hide_index=True)
             else:
                 st.info("Game log not yet available — data refreshes every 6 hours via GitHub Actions.")
             st.markdown(f'<p style="color:{GRAY}; font-size:10px; font-weight:700; letter-spacing:0.10em; text-transform:uppercase; margin:16px 0 4px;">Scout Notes</p>', unsafe_allow_html=True)

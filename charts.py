@@ -199,7 +199,7 @@ def era_moving_average_chart(game_log: list, player_name: str) -> go.Figure:
     ))
 
     fig.update_layout(**_layout(
-        title=_title_style(f"{player_name} — Season ERA", color=GOLD),
+        title=_title_style(f"{player_name} — ERA (Last 5 G)", color=GOLD),
         yaxis=dict(title="ERA", **_BASE_LAYOUT["yaxis"]),
     ))
     return fig
