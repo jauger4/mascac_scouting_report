@@ -1,11 +1,11 @@
 {
-  "scraped_at": 1774927010.227932,
+  "scraped_at": 1775049907.1849813,
   "rows": [
     {
       "date": "Feb 28",
       "opponent": "John Jay",
       "score": "W, 4-3",
-      "w": 0.0,
+      "w": 1.0,
       "l": 0.0,
       "ip": 7.0,
       "h": 3.0,
