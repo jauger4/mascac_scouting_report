@@ -19,9 +19,10 @@ import scraper
 
 
 def main():
-    print("Loading rosters...")
-    hitters = scraper.scrape_hitters()
-    pitchers = scraper.scrape_pitchers()
+    print("Scraping aggregate stats...")
+    hitters = scraper.scrape_hitters(force=True)
+    pitchers = scraper.scrape_pitchers(force=True)
+    print(f"  {len(hitters)} hitters, {len(pitchers)} pitchers")
 
     slugs = {p["slug"] for p in hitters + pitchers if p.get("slug")}
     print(f"Scraping game logs for {len(slugs)} players...")
@@ -37,7 +38,7 @@ def main():
 
     print(f"\nScrape complete. Committing and pushing...")
 
-    subprocess.run(["git", "add", "data/game_logs/"], check=True)
+    subprocess.run(["git", "add", "data/"], check=True)
     staged = subprocess.run(["git", "diff", "--staged", "--quiet"])
     if staged.returncode != 0:
         subprocess.run(
