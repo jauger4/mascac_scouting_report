@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1775049906.1345081,
+  "scraped_at": 1775180752.416799,
   "rows": [
     {
       "date": "Mar 11",
@@ -286,6 +286,32 @@
       "fo": null,
       "go/fo": null,
       "pa": 3.0
+    },
+    {
+      "date": "Apr 1",
+      "opponent": "at Endicott",
+      "score": "L, 10-0",
+      "gp": 1.0,
+      "ab": 1.0,
+      "h": 0.0,
+      "rbi": 0.0,
+      "bb": 1.0,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": null,
+      "avg": 0.0,
+      "obp": 0.5,
+      "slg": 0.0,
+      "hbp": null,
+      "sf": null,
+      "sh": null,
+      "hdp": null,
+      "go": 1.0,
+      "fo": null,
+      "go/fo": null,
+      "pa": 2.0
     }
   ]
 }
