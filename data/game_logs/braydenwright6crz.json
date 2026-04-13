@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1775180722.74416,
+  "scraped_at": 1776045009.1189687,
   "rows": [
     {
       "date": "Feb 28",
@@ -546,6 +546,32 @@
       "fo": 2.0,
       "go/fo": 0.5,
       "pa": 5.0
+    },
+    {
+      "date": "Apr 3",
+      "opponent": "at Mass. Maritime",
+      "score": "W, 14-13",
+      "gp": 1.0,
+      "ab": 4.0,
+      "h": 0.0,
+      "rbi": 0.0,
+      "bb": 2.0,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": 1.0,
+      "avg": 0.0,
+      "obp": 0.333,
+      "slg": 0.0,
+      "hbp": null,
+      "sf": null,
+      "sh": null,
+      "hdp": null,
+      "go": 1.0,
+      "fo": 1.0,
+      "go/fo": 1.0,
+      "pa": 6.0
     }
   ]
 }
