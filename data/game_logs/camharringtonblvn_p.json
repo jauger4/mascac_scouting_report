@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1775180760.9532664,
+  "scraped_at": 1776538465.0106134,
   "rows": [
     {
       "date": "Mar 1",
@@ -96,6 +96,70 @@
       "k/9": 9.0,
       "hr": null,
       "whip": 1.5
+    },
+    {
+      "date": "Apr 4",
+      "opponent": "Fitchburg St.",
+      "score": "W, 7-6",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 3.0,
+      "h": 7.0,
+      "r": 4.0,
+      "er": 4.0,
+      "era": 12.0,
+      "k": 2.0,
+      "k/9": 6.0,
+      "hr": null,
+      "whip": 3.33
+    },
+    {
+      "date": "Apr 8",
+      "opponent": "Westfield St.",
+      "score": "L, 6-3",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 1.1,
+      "h": 1.0,
+      "r": 1.0,
+      "er": 1.0,
+      "era": 6.75,
+      "k": 2.0,
+      "k/9": 13.5,
+      "hr": null,
+      "whip": 1.5
+    },
+    {
+      "date": "Apr 10",
+      "opponent": "Framingham St.",
+      "score": "L, 7-5",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 7.2,
+      "h": 6.0,
+      "r": 2.0,
+      "er": 1.0,
+      "era": 1.17,
+      "k": 4.0,
+      "k/9": 4.7,
+      "hr": 1.0,
+      "whip": 0.78
+    },
+    {
+      "date": "Apr 16",
+      "opponent": "at Bridgewater St.",
+      "score": "L, 7-2",
+      "w": 0.0,
+      "l": 1.0,
+      "ip": 2.1,
+      "h": 2.0,
+      "r": 2.0,
+      "er": 1.0,
+      "era": 3.86,
+      "k": 2.0,
+      "k/9": 7.71,
+      "hr": null,
+      "whip": 1.71
     }
   ]
 }
