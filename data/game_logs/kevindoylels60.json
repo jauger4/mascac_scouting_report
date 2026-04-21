@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1776538407.1574106,
+  "scraped_at": 1776735230.4729676,
   "rows": [
     {
       "date": "Mar 7",
@@ -520,6 +520,32 @@
       "fo": null,
       "go/fo": null,
       "pa": 5.0
+    },
+    {
+      "date": "Apr 20",
+      "opponent": "at Bridgewater St.",
+      "score": "L, 5-1",
+      "gp": 1.0,
+      "ab": 4.0,
+      "h": 1.0,
+      "rbi": 0.0,
+      "bb": null,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": 2.0,
+      "avg": 0.25,
+      "obp": 0.25,
+      "slg": 0.25,
+      "hbp": null,
+      "sf": null,
+      "sh": null,
+      "hdp": null,
+      "go": null,
+      "fo": 1.0,
+      "go/fo": null,
+      "pa": 4.0
     }
   ]
 }
