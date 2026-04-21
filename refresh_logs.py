@@ -32,26 +32,17 @@ def _s(rows, field):
 
 
 def _compute_hitter_totals(player, rows):
-    """Recompute season totals for a hitter from their per-game log rows."""
-    ab  = _s(rows, 'ab');   h   = _s(rows, 'h')
-    bb  = _s(rows, 'bb');   hbp = _s(rows, 'hbp')
-    sf  = _s(rows, 'sf');   hr  = _s(rows, 'hr')
-    d2  = _s(rows, '2b');   d3  = _s(rows, '3b')
-    go  = _s(rows, 'go');   fo  = _s(rows, 'fo')
-
-    avg  = round(h / ab, 3)                                    if ab else None
-    obp  = round((h + bb + hbp) / (ab + bb + hbp + sf), 3)    if (ab + bb + hbp + sf) else None
-    slg  = round((h + d2 + 2 * d3 + 3 * hr) / ab, 3)          if ab else None
-    gofo = round(go / fo, 2)                                   if fo else None
-
+    """Update hitter counting stats from game logs; scraped avg/obp/slg are kept as-is."""
+    go = _s(rows, 'go'); fo = _s(rows, 'fo')
     return {**player,
-            'gp': _s(rows, 'gp'), 'ab': ab, 'h': h, 'rbi': _s(rows, 'rbi'),
-            'bb': bb, '2b': d2, '3b': d3, 'hr': hr,
-            'xbh': _s(rows, 'xbh'), 'k': _s(rows, 'k'),
-            'avg': avg, 'obp': obp, 'slg': slg,
-            'hbp': hbp, 'sf': sf, 'sh': _s(rows, 'sh'),
+            'gp': _s(rows, 'gp'),
+            'ab': _s(rows, 'ab'), 'h': _s(rows, 'h'), 'rbi': _s(rows, 'rbi'),
+            'bb': _s(rows, 'bb'), '2b': _s(rows, '2b'), '3b': _s(rows, '3b'),
+            'hr': _s(rows, 'hr'), 'xbh': _s(rows, 'xbh'), 'k': _s(rows, 'k'),
+            'hbp': _s(rows, 'hbp'), 'sf': _s(rows, 'sf'), 'sh': _s(rows, 'sh'),
             'hdp': _s(rows, 'hdp'), 'go': go, 'fo': fo,
-            'go/fo': gofo, 'pa': _s(rows, 'pa')}
+            'go/fo': round(go / fo, 2) if fo else None,
+            'pa': _s(rows, 'pa')}
 
 
 def _compute_pitcher_totals(player, rows, scraped):

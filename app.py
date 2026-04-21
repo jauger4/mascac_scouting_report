@@ -478,7 +478,7 @@ if st.session_state.view == "Hitting":
                 gl5 = gl[-5:]
                 cc1, cc2, cc3 = st.columns(3, gap="medium")
                 with cc1:
-                    st.plotly_chart(charts.avg_moving_average_chart(gl5, name),
+                    st.plotly_chart(charts.avg_moving_average_chart(gl, name),
                                     use_container_width=True, config=cfg)
                 with cc2:
                     st.plotly_chart(charts.totals_bar_chart(gl5, "xbh", name, "XBH", color=GOLD),

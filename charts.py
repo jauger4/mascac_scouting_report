@@ -89,7 +89,7 @@ def _title_style(text: str, color: str = GOLD) -> dict:
 # Hitter charts
 # ---------------------------------------------------------------------------
 
-def avg_moving_average_chart(game_log: list, player_name: str) -> go.Figure:
+def avg_moving_average_chart(game_log: list, player_name: str, display_n: int = 5) -> go.Figure:
     rows = [r for r in game_log if r]
     dates, avgs = [], []
     cum_h = cum_ab = 0.0
@@ -99,6 +99,9 @@ def avg_moving_average_chart(game_log: list, player_name: str) -> go.Figure:
         cum_ab += _safe_float(row.get("ab"))
         avgs.append(round(cum_h / cum_ab, 3) if cum_ab else 0.0)
         dates.append(row.get("date", f"G{i+1}"))
+
+    dates = dates[-display_n:]
+    avgs  = avgs[-display_n:]
 
     fmt = [f"{v:.3f}".lstrip("0") or ".000" for v in avgs]
 
