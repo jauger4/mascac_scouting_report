@@ -1,0 +1,37 @@
+{
+  "scraped_at": 1776741255.4787917,
+  "rows": [
+    {
+      "date": "Mar 11",
+      "opponent": "at Wentworth",
+      "score": "L, 5-1",
+      "w": 0.0,
+      "l": 1.0,
+      "ip": 4.0,
+      "h": 7.0,
+      "r": 4.0,
+      "er": 4.0,
+      "era": 9.0,
+      "k": 3.0,
+      "k/9": 6.75,
+      "hr": null,
+      "whip": 2.25
+    },
+    {
+      "date": "Mar 16",
+      "opponent": "vs. Rutgers-Newark",
+      "score": "L, 8-2",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.0,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": null
+    }
+  ]
+}

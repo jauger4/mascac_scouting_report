@@ -1,0 +1,69 @@
+{
+  "scraped_at": 1776741248.765455,
+  "rows": [
+    {
+      "date": "Mar 1",
+      "opponent": "vs. Rose-Hulman",
+      "score": "L, 10-6",
+      "w": 0.0,
+      "l": 1.0,
+      "ip": 3.1,
+      "h": 6.0,
+      "r": 6.0,
+      "er": 6.0,
+      "era": 16.2,
+      "k": 2.0,
+      "k/9": 5.4,
+      "hr": null,
+      "whip": 2.4
+    },
+    {
+      "date": "Mar 7",
+      "opponent": "vs. Thomas (ME)",
+      "score": "W, 8-4",
+      "w": 1.0,
+      "l": 0.0,
+      "ip": 4.0,
+      "h": 0.0,
+      "r": 2.0,
+      "er": 1.0,
+      "era": 2.25,
+      "k": 4.0,
+      "k/9": 9.0,
+      "hr": null,
+      "whip": 1.25
+    },
+    {
+      "date": "Mar 12",
+      "opponent": "Lesley",
+      "score": "L, 6-2",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 1.0,
+      "h": 1.0,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": 2.0
+    },
+    {
+      "date": "Mar 17",
+      "opponent": "at Elms",
+      "score": "W, 7-6",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 1.0,
+      "h": 2.0,
+      "r": 1.0,
+      "er": 1.0,
+      "era": 9.0,
+      "k": 3.0,
+      "k/9": 27.0,
+      "hr": null,
+      "whip": 4.0
+    }
+  ]
+}

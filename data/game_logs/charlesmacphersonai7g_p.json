@@ -1,0 +1,53 @@
+{
+  "scraped_at": 1776741258.5389445,
+  "rows": [
+    {
+      "date": "Mar 1",
+      "opponent": "at Albright",
+      "score": "L, 6-1",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 1.0,
+      "h": 2.0,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 1.0,
+      "k/9": 9.0,
+      "hr": null,
+      "whip": 2.0
+    },
+    {
+      "date": "Mar 10",
+      "opponent": "Brandeis",
+      "score": "L, 14-3",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.2,
+      "h": 4.0,
+      "r": 6.0,
+      "er": 6.0,
+      "era": 81.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": 1.0,
+      "whip": 10.5
+    },
+    {
+      "date": "Mar 20",
+      "opponent": "Gordon",
+      "score": "W, 21-4",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 1.0,
+      "h": 2.0,
+      "r": 3.0,
+      "er": 3.0,
+      "era": 27.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": 4.0
+    }
+  ]
+}

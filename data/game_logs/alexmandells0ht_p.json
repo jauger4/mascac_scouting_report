@@ -1,0 +1,53 @@
+{
+  "scraped_at": 1776741254.9665518,
+  "rows": [
+    {
+      "date": "Feb 28",
+      "opponent": "at John Jay",
+      "score": "W, 7-4",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.0,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": null
+    },
+    {
+      "date": "Mar 4",
+      "opponent": "vs. John Carroll",
+      "score": "L, 19-2",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.2,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 1.0,
+      "k/9": 13.5,
+      "hr": null,
+      "whip": 1.5
+    },
+    {
+      "date": "Apr 7",
+      "opponent": "New England Col.",
+      "score": "W, 9-5",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 1.0,
+      "h": null,
+      "r": 1.0,
+      "er": null,
+      "era": 0.0,
+      "k": 2.0,
+      "k/9": 18.0,
+      "hr": null,
+      "whip": 1.0
+    }
+  ]
+}

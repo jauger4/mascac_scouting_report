@@ -1,0 +1,37 @@
+{
+  "scraped_at": 1776741250.1827292,
+  "rows": [
+    {
+      "date": "Mar 4",
+      "opponent": "vs. John Carroll",
+      "score": "L, 19-2",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 3.0,
+      "h": 2.0,
+      "r": 1.0,
+      "er": null,
+      "era": 0.0,
+      "k": 7.0,
+      "k/9": 21.0,
+      "hr": null,
+      "whip": 1.33
+    },
+    {
+      "date": "Apr 7",
+      "opponent": "New England Col.",
+      "score": "W, 9-5",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 1.0,
+      "h": 1.0,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 1.0,
+      "k/9": 9.0,
+      "hr": null,
+      "whip": 1.0
+    }
+  ]
+}

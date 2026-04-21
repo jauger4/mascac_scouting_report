@@ -1,0 +1,69 @@
+{
+  "scraped_at": 1776741253.61153,
+  "rows": [
+    {
+      "date": "Mar 18",
+      "opponent": "vs. Eastern Conn. St.",
+      "score": "L, 9-3",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.1,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": 3.0
+    },
+    {
+      "date": "Mar 31",
+      "opponent": "Framingham St.",
+      "score": "W, 12-0",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 1.0,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 1.0,
+      "k/9": 9.0,
+      "hr": null,
+      "whip": 1.0
+    },
+    {
+      "date": "Apr 9",
+      "opponent": "at Framingham St.",
+      "score": "W, 16-8",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 1.0,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 3.0,
+      "k/9": 27.0,
+      "hr": null,
+      "whip": 2.0
+    },
+    {
+      "date": "Apr 11",
+      "opponent": "Mass. Maritime",
+      "score": "L, 15-5",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.2,
+      "h": null,
+      "r": 4.0,
+      "er": 4.0,
+      "era": 54.0,
+      "k": 2.0,
+      "k/9": 27.0,
+      "hr": null,
+      "whip": 6.0
+    }
+  ]
+}
