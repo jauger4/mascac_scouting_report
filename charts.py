@@ -89,7 +89,7 @@ def _title_style(text: str, color: str = GOLD) -> dict:
 # Hitter charts
 # ---------------------------------------------------------------------------
 
-def avg_moving_average_chart(game_log: list, player_name: str, display_n: int = 5) -> go.Figure:
+def avg_moving_average_chart(game_log: list, player_name: str, default_n: int = 5) -> go.Figure:
     rows = [r for r in game_log if r]
     dates, avgs = [], []
     cum_h = cum_ab = 0.0
@@ -100,14 +100,14 @@ def avg_moving_average_chart(game_log: list, player_name: str, display_n: int = 
         avgs.append(round(cum_h / cum_ab, 3) if cum_ab else 0.0)
         dates.append(row.get("date", f"G{i+1}"))
 
-    dates = dates[-display_n:]
-    avgs  = avgs[-display_n:]
-
     fmt = [f"{v:.3f}".lstrip("0") or ".000" for v in avgs]
+
+    # Default view: last N games; zoom out via modebar to see full season
+    n = len(rows)
+    x_range = [max(-0.5, n - default_n - 0.5), n - 0.5]
 
     fig = go.Figure()
 
-    # Shaded area under the line
     fig.add_trace(go.Scatter(
         x=dates, y=avgs,
         fill="tozeroy",
@@ -128,7 +128,8 @@ def avg_moving_average_chart(game_log: list, player_name: str, display_n: int = 
     ))
 
     fig.update_layout(**_layout(
-        title=_title_style(f"{player_name} — AVG (Last 5 G)"),
+        title=_title_style(f"{player_name} — Season AVG"),
+        xaxis=dict(range=x_range, **_BASE_LAYOUT["xaxis"]),
         yaxis=dict(tickformat=".3f", title="AVG", **_BASE_LAYOUT["yaxis"]),
     ))
     return fig
