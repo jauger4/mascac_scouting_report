@@ -18,7 +18,7 @@ from pathlib import Path
 BASE_URL = "https://mascac.com"
 SEASON = "2025-26"
 HITTER_URL = f"{BASE_URL}/sports/bsb/{SEASON}/players?pos=h&sort=avg&jsRendering=true"
-PITCHER_URL = f"{BASE_URL}/sports/bsb/{SEASON}/players?pos=p&sort=era&jsRendering=true"
+PITCHER_URL = f"{BASE_URL}/sports/bsb/{SEASON}/players?pos=pe&sort=pk&jsRendering=true"
 
 DATA_DIR = Path("data")
 GAME_LOGS_DIR = DATA_DIR / "game_logs"
