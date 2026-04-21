@@ -527,7 +527,7 @@ else:
         st.warning("No pitching data found for this team.")
         st.stop()
 
-    team_df = team_df.sort_values("era", ascending=True, na_position="last").reset_index(drop=True)
+    team_df = team_df.sort_values("ip", ascending=False, na_position="last").reset_index(drop=True)
 
     # ── Metric cards ──
     p1, p2, p3 = st.columns(3, gap="medium")
@@ -552,7 +552,7 @@ else:
 
     # ── Section header ──
     with _stat_card("pitchers_hdr", ROYAL_BLUE):
-        section_header("Pitching Staff", ROYAL_BLUE, "Sorted by ERA · click row for trends")
+        section_header("Pitching Staff", ROYAL_BLUE, "Sorted by IP · click row for trends")
 
         # ── Native dataframe with row selection ──
         notes = load_notes()
