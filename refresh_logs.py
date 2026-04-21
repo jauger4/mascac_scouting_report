@@ -139,9 +139,12 @@ def main():
             ["git", "commit", "-m", "Refresh all MASCAC data (local scrape)"],
             check=True,
         )
-        subprocess.run(["git", "pull", "--rebase", "origin", "master"], check=True)
-        subprocess.run(["git", "push", "origin", "master"], check=True)
-        print("Done — changes pushed to GitHub.")
+        subprocess.run(["git", "pull", "--rebase", "--autostash", "origin", "master"], check=True)
+        result = subprocess.run(["git", "push", "origin", "master"], capture_output=True, text=True)
+        if result.returncode == 0:
+            print("Done — changes pushed to GitHub.")
+        else:
+            print(f"Warning: push failed. stderr: {result.stderr.strip()}")
     else:
         print("Done — no changes (all data already up to date).")
 
