@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1776741233.982901,
+  "scraped_at": 1777259424.3054936,
   "rows": [
     {
       "date": "Feb 19",
@@ -780,6 +780,58 @@
       "fo": null,
       "go/fo": null,
       "pa": 6.0
+    },
+    {
+      "date": "Apr 22",
+      "opponent": "Mass. Maritime",
+      "score": "L, 8-6",
+      "gp": 1.0,
+      "ab": 5.0,
+      "h": 0.0,
+      "rbi": 0.0,
+      "bb": null,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": 2.0,
+      "avg": 0.0,
+      "obp": 0.0,
+      "slg": 0.0,
+      "hbp": null,
+      "sf": null,
+      "sh": null,
+      "hdp": null,
+      "go": 3.0,
+      "fo": null,
+      "go/fo": null,
+      "pa": 5.0
+    },
+    {
+      "date": "Apr 24",
+      "opponent": "Plymouth St.",
+      "score": "W, 6-5",
+      "gp": 1.0,
+      "ab": 5.0,
+      "h": 2.0,
+      "rbi": 1.0,
+      "bb": null,
+      "2b": 1.0,
+      "3b": null,
+      "hr": null,
+      "xbh": 1.0,
+      "k": null,
+      "avg": 0.4,
+      "obp": 0.4,
+      "slg": 0.6,
+      "hbp": null,
+      "sf": null,
+      "sh": null,
+      "hdp": 1.0,
+      "go": null,
+      "fo": 2.0,
+      "go/fo": null,
+      "pa": 5.0
     }
   ]
 }

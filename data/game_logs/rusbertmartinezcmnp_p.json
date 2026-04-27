@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1776876892.6748314,
+  "scraped_at": 1777259502.9936123,
   "rows": [
     {
       "date": "Mar 15",
@@ -160,6 +160,22 @@
       "k/9": 7.71,
       "hr": null,
       "whip": 2.14
+    },
+    {
+      "date": "Apr 25",
+      "opponent": "Anna Maria",
+      "score": "L, 7-1",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.0,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": null
     }
   ]
 }

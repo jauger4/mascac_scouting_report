@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1776862726.8358305,
+  "scraped_at": 1777259485.5135326,
   "rows": [
     {
       "date": "Mar 8",
@@ -80,6 +80,22 @@
       "k/9": 7.71,
       "hr": null,
       "whip": 3.43
+    },
+    {
+      "date": "Apr 25",
+      "opponent": "Westfield St.",
+      "score": "W, 17-4",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.0,
+      "h": 1.0,
+      "r": 3.0,
+      "er": 3.0,
+      "era": Infinity,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": null
     }
   ]
 }

@@ -1,0 +1,53 @@
+{
+  "scraped_at": 1777259498.860185,
+  "rows": [
+    {
+      "date": "Mar 10",
+      "opponent": "at Springfield",
+      "score": "L, 21-8",
+      "w": 0.0,
+      "l": 1.0,
+      "ip": 0.1,
+      "h": 1.0,
+      "r": 4.0,
+      "er": 4.0,
+      "era": 108.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": 9.0
+    },
+    {
+      "date": "Apr 14",
+      "opponent": "at Westfield St.",
+      "score": "L, 13-1",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 1.2,
+      "h": 2.0,
+      "r": 2.0,
+      "er": 2.0,
+      "era": 10.8,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": 1.2
+    },
+    {
+      "date": "Apr 22",
+      "opponent": "Skidmore",
+      "score": "L, 14-6",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 3.0,
+      "h": 2.0,
+      "r": 3.0,
+      "er": null,
+      "era": 0.0,
+      "k": 4.0,
+      "k/9": 12.0,
+      "hr": null,
+      "whip": 1.33
+    }
+  ]
+}

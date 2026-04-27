@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1776876892.0414484,
+  "scraped_at": 1777259494.2834804,
   "rows": [
     {
       "date": "Mar 1",
@@ -112,6 +112,22 @@
       "k/9": 3.38,
       "hr": null,
       "whip": 2.25
+    },
+    {
+      "date": "Apr 24",
+      "opponent": "Mass. Maritime",
+      "score": "L, 21-4",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 1.0,
+      "h": 3.0,
+      "r": 5.0,
+      "er": null,
+      "era": 0.0,
+      "k": 1.0,
+      "k/9": 9.0,
+      "hr": null,
+      "whip": 6.0
     }
   ]
 }
