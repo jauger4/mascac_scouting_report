@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1777344770.5209641,
+  "scraped_at": 1777467222.028288,
   "rows": [
     {
       "date": "Feb 19",
@@ -389,6 +389,38 @@
       "date": "Apr 22",
       "opponent": "Mass. Maritime",
       "score": "L, 8-6",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.0,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": null
+    },
+    {
+      "date": "Apr 28",
+      "opponent": "Anna Maria",
+      "score": "L, 6-4",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.0,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": null
+    },
+    {
+      "date": "Apr 28",
+      "opponent": "Anna Maria",
+      "score": "L, 6-2",
       "w": 0.0,
       "l": 0.0,
       "ip": 0.0,
