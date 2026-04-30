@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1777344759.6456366,
+  "scraped_at": 1777569751.317163,
   "rows": [
     {
       "date": "Mar 18",
@@ -64,6 +64,22 @@
       "k/9": 27.0,
       "hr": null,
       "whip": 6.0
+    },
+    {
+      "date": "Apr 29",
+      "opponent": "at Keene St.",
+      "score": "L, 12-0",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.0,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": null
     }
   ]
 }

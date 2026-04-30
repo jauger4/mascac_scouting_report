@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1777467155.8127813,
+  "scraped_at": 1777569713.2989156,
   "rows": [
     {
       "date": "Feb 19",
@@ -806,6 +806,32 @@
       "fo": 1.0,
       "go/fo": null,
       "pa": 3.0
+    },
+    {
+      "date": "Apr 29",
+      "opponent": "at Western New Eng.",
+      "score": "L, 11-3",
+      "gp": 1.0,
+      "ab": 3.0,
+      "h": 1.0,
+      "rbi": 1.0,
+      "bb": 1.0,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": 1.0,
+      "avg": 0.333,
+      "obp": 0.5,
+      "slg": 0.333,
+      "hbp": null,
+      "sf": null,
+      "sh": null,
+      "hdp": null,
+      "go": null,
+      "fo": 1.0,
+      "go/fo": null,
+      "pa": 4.0
     }
   ]
 }
