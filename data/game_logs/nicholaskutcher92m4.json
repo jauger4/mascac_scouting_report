@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1777569704.1789317,
+  "scraped_at": 1777774728.594688,
   "rows": [
     {
       "date": "Mar 11",
@@ -884,6 +884,32 @@
       "fo": null,
       "go/fo": null,
       "pa": 3.0
+    },
+    {
+      "date": "May 1",
+      "opponent": "Fitchburg St.",
+      "score": "L, 10-7",
+      "gp": 1.0,
+      "ab": 5.0,
+      "h": 0.0,
+      "rbi": 0.0,
+      "bb": null,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": null,
+      "avg": 0.0,
+      "obp": 0.0,
+      "slg": 0.0,
+      "hbp": null,
+      "sf": null,
+      "sh": null,
+      "hdp": 1.0,
+      "go": 1.0,
+      "fo": 4.0,
+      "go/fo": 0.25,
+      "pa": 5.0
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1777569722.9621737,
+  "scraped_at": 1777774752.2590377,
   "rows": [
     {
       "date": "Mar 1",
@@ -160,6 +160,22 @@
       "k/9": 3.6,
       "hr": null,
       "whip": 1.6
+    },
+    {
+      "date": "Apr 30",
+      "opponent": "Wentworth",
+      "score": "L, 9-5",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.0,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": null
     }
   ]
 }

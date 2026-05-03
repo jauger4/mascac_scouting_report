@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1777569716.303169,
+  "scraped_at": 1777774742.6795554,
   "rows": [
     {
       "date": "Mar 7",
@@ -806,6 +806,32 @@
       "fo": 1.0,
       "go/fo": 1.0,
       "pa": 3.0
+    },
+    {
+      "date": "May 1",
+      "opponent": "MCLA",
+      "score": "W, 7-3",
+      "gp": 1.0,
+      "ab": 4.0,
+      "h": 1.0,
+      "rbi": 0.0,
+      "bb": null,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": 1.0,
+      "avg": 0.25,
+      "obp": 0.25,
+      "slg": 0.25,
+      "hbp": null,
+      "sf": null,
+      "sh": 1.0,
+      "hdp": null,
+      "go": 1.0,
+      "fo": 2.0,
+      "go/fo": 0.5,
+      "pa": 5.0
     }
   ]
 }

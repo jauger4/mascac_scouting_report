@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1777771100.1348069,
+  "scraped_at": 1777774713.3382907,
   "rows": [
     {
       "date": "Mar 20",
@@ -676,6 +676,32 @@
       "fo": 1.0,
       "go/fo": null,
       "pa": 4.0
+    },
+    {
+      "date": "May 1",
+      "opponent": "at Curry",
+      "score": "L, 9-6",
+      "gp": 1.0,
+      "ab": 3.0,
+      "h": 2.0,
+      "rbi": 3.0,
+      "bb": 1.0,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": null,
+      "avg": 0.667,
+      "obp": 0.75,
+      "slg": 0.667,
+      "hbp": null,
+      "sf": null,
+      "sh": 1.0,
+      "hdp": null,
+      "go": 1.0,
+      "fo": 1.0,
+      "go/fo": 1.0,
+      "pa": 5.0
     }
   ]
 }
