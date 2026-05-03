@@ -1,0 +1,53 @@
+{
+  "scraped_at": 1777771193.4570036,
+  "rows": [
+    {
+      "date": "Mar 17",
+      "opponent": "Norwich",
+      "score": "W, 13-10",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.2,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": null
+    },
+    {
+      "date": "Mar 27",
+      "opponent": "at Salem St.",
+      "score": "L, 10-0",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 2.0,
+      "h": 2.0,
+      "r": 3.0,
+      "er": 2.0,
+      "era": 9.0,
+      "k": 1.0,
+      "k/9": 4.5,
+      "hr": null,
+      "whip": 2.5
+    },
+    {
+      "date": "Apr 30",
+      "opponent": "Wentworth",
+      "score": "L, 9-5",
+      "w": 0.0,
+      "l": 1.0,
+      "ip": 1.0,
+      "h": 2.0,
+      "r": 3.0,
+      "er": 3.0,
+      "era": 27.0,
+      "k": 1.0,
+      "k/9": 9.0,
+      "hr": null,
+      "whip": 3.0
+    }
+  ]
+}

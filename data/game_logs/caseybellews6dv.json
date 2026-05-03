@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1777569713.2989156,
+  "scraped_at": 1777771121.49623,
   "rows": [
     {
       "date": "Feb 19",
@@ -832,6 +832,32 @@
       "fo": 1.0,
       "go/fo": null,
       "pa": 4.0
+    },
+    {
+      "date": "May 1",
+      "opponent": "at Framingham St.",
+      "score": "W, 10-7",
+      "gp": 1.0,
+      "ab": 4.0,
+      "h": 2.0,
+      "rbi": 1.0,
+      "bb": null,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": 1.0,
+      "avg": 0.5,
+      "obp": 0.4,
+      "slg": 0.5,
+      "hbp": null,
+      "sf": 1.0,
+      "sh": null,
+      "hdp": null,
+      "go": 1.0,
+      "fo": 1.0,
+      "go/fo": 1.0,
+      "pa": 5.0
     }
   ]
 }

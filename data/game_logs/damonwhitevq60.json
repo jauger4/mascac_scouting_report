@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1777467137.3551548,
+  "scraped_at": 1777771106.4670057,
   "rows": [
     {
       "date": "Feb 28",
@@ -805,6 +805,32 @@
       "go": 1.0,
       "fo": 1.0,
       "go/fo": 1.0,
+      "pa": 4.0
+    },
+    {
+      "date": "Apr 30",
+      "opponent": "Wentworth",
+      "score": "L, 9-5",
+      "gp": 1.0,
+      "ab": 4.0,
+      "h": 0.0,
+      "rbi": 0.0,
+      "bb": null,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": 1.0,
+      "avg": 0.0,
+      "obp": 0.0,
+      "slg": 0.0,
+      "hbp": null,
+      "sf": null,
+      "sh": null,
+      "hdp": null,
+      "go": 2.0,
+      "fo": 1.0,
+      "go/fo": 2.0,
       "pa": 4.0
     }
   ]

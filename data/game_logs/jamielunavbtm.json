@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1777569706.8436708,
+  "scraped_at": 1777771114.1194904,
   "rows": [
     {
       "date": "Mar 7",
@@ -676,6 +676,32 @@
       "fo": null,
       "go/fo": null,
       "pa": 6.0
+    },
+    {
+      "date": "May 1",
+      "opponent": "at Anna Maria",
+      "score": "W, 6-0",
+      "gp": 1.0,
+      "ab": 3.0,
+      "h": 2.0,
+      "rbi": 2.0,
+      "bb": 1.0,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": null,
+      "avg": 0.667,
+      "obp": 0.75,
+      "slg": 0.667,
+      "hbp": null,
+      "sf": null,
+      "sh": null,
+      "hdp": null,
+      "go": null,
+      "fo": 1.0,
+      "go/fo": null,
+      "pa": 4.0
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1777569759.2985227,
+  "scraped_at": 1777771182.8829641,
   "rows": [
     {
       "date": "Feb 19",
@@ -421,6 +421,22 @@
       "date": "Apr 28",
       "opponent": "Anna Maria",
       "score": "L, 6-2",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.0,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": null
+    },
+    {
+      "date": "May 1",
+      "opponent": "at Framingham St.",
+      "score": "W, 10-7",
       "w": 0.0,
       "l": 0.0,
       "ip": 0.0,
