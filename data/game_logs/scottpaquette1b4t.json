@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1777774743.1200075,
+  "scraped_at": 1777909424.060812,
   "rows": [
     {
       "date": "Mar 11",
@@ -806,6 +806,58 @@
       "fo": 1.0,
       "go/fo": null,
       "pa": 4.0
+    },
+    {
+      "date": "May 3",
+      "opponent": "at Fitchburg St.",
+      "score": "W, 6-4",
+      "gp": 1.0,
+      "ab": 2.0,
+      "h": 1.0,
+      "rbi": 0.0,
+      "bb": 1.0,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": null,
+      "avg": 0.5,
+      "obp": 0.667,
+      "slg": 0.5,
+      "hbp": null,
+      "sf": null,
+      "sh": null,
+      "hdp": null,
+      "go": 1.0,
+      "fo": null,
+      "go/fo": null,
+      "pa": 3.0
+    },
+    {
+      "date": "May 3",
+      "opponent": "at Fitchburg St.",
+      "score": "L, 4-3",
+      "gp": 1.0,
+      "ab": 3.0,
+      "h": 0.0,
+      "rbi": 0.0,
+      "bb": null,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": null,
+      "avg": 0.0,
+      "obp": 0.0,
+      "slg": 0.0,
+      "hbp": null,
+      "sf": null,
+      "sh": null,
+      "hdp": null,
+      "go": 1.0,
+      "fo": 2.0,
+      "go/fo": 0.5,
+      "pa": 3.0
     }
   ]
 }
