@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1777771146.345476,
+  "scraped_at": 1778090112.2556002,
   "rows": [
     {
       "date": "Mar 1",
@@ -549,6 +549,38 @@
       "date": "May 1",
       "opponent": "at Worcester St.",
       "score": "L, 7-3",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.0,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": null
+    },
+    {
+      "date": "May 3",
+      "opponent": "Worcester St.",
+      "score": "L, 9-0",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.0,
+      "h": null,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": null
+    },
+    {
+      "date": "May 3",
+      "opponent": "Worcester St.",
+      "score": "L, 13-6",
       "w": 0.0,
       "l": 0.0,
       "ip": 0.0,
