@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1778122369.5908763,
+  "scraped_at": 1778387838.1353376,
   "rows": [
     {
       "date": "Mar 7",
@@ -806,6 +806,32 @@
       "fo": 1.0,
       "go/fo": null,
       "pa": 3.0
+    },
+    {
+      "date": "May 7",
+      "opponent": "Westfield St.",
+      "score": "W, 16-6",
+      "gp": 1.0,
+      "ab": 5.0,
+      "h": 2.0,
+      "rbi": 3.0,
+      "bb": null,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": null,
+      "avg": 0.4,
+      "obp": 0.4,
+      "slg": 0.4,
+      "hbp": null,
+      "sf": null,
+      "sh": null,
+      "hdp": null,
+      "go": 2.0,
+      "fo": null,
+      "go/fo": null,
+      "pa": 5.0
     }
   ]
 }

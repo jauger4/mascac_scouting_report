@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1778122338.6705642,
+  "scraped_at": 1778387815.2371264,
   "rows": [
     {
       "date": "Feb 28",
@@ -962,6 +962,32 @@
       "fo": null,
       "go/fo": null,
       "pa": 5.0
+    },
+    {
+      "date": "May 7",
+      "opponent": "vs. Worcester St.",
+      "score": "L, 14-11",
+      "gp": 1.0,
+      "ab": 5.0,
+      "h": 3.0,
+      "rbi": 1.0,
+      "bb": null,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": null,
+      "avg": 0.6,
+      "obp": 0.667,
+      "slg": 0.6,
+      "hbp": 1.0,
+      "sf": null,
+      "sh": null,
+      "hdp": null,
+      "go": 1.0,
+      "fo": 1.0,
+      "go/fo": 1.0,
+      "pa": 6.0
     }
   ]
 }

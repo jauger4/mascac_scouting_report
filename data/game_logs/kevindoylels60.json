@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1778122339.587158,
+  "scraped_at": 1778387816.2063262,
   "rows": [
     {
       "date": "Mar 7",
@@ -754,6 +754,58 @@
       "fo": null,
       "go/fo": null,
       "pa": 5.0
+    },
+    {
+      "date": "May 7",
+      "opponent": "vs. Mass. Maritime",
+      "score": "W, 14-11",
+      "gp": 1.0,
+      "ab": 4.0,
+      "h": 2.0,
+      "rbi": 1.0,
+      "bb": 1.0,
+      "2b": null,
+      "3b": 1.0,
+      "hr": null,
+      "xbh": 1.0,
+      "k": 1.0,
+      "avg": 0.5,
+      "obp": 0.667,
+      "slg": 1.0,
+      "hbp": 1.0,
+      "sf": null,
+      "sh": null,
+      "hdp": null,
+      "go": 1.0,
+      "fo": null,
+      "go/fo": null,
+      "pa": 6.0
+    },
+    {
+      "date": "May 7",
+      "opponent": "at Salem St.",
+      "score": "L, 20-10",
+      "gp": 1.0,
+      "ab": 3.0,
+      "h": 2.0,
+      "rbi": 1.0,
+      "bb": 1.0,
+      "2b": null,
+      "3b": null,
+      "hr": null,
+      "xbh": 0.0,
+      "k": null,
+      "avg": 0.667,
+      "obp": 0.75,
+      "slg": 0.667,
+      "hbp": null,
+      "sf": null,
+      "sh": null,
+      "hdp": null,
+      "go": 1.0,
+      "fo": null,
+      "go/fo": null,
+      "pa": 4.0
     }
   ]
 }
