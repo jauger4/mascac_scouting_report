@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1778387883.3248453,
+  "scraped_at": 1778466258.273805,
   "rows": [
     {
       "date": "Mar 7",
@@ -210,6 +210,22 @@
       "whip": 1.0
     },
     {
+      "date": "Apr 28",
+      "opponent": "at Worcester St.",
+      "score": "L, 8-7",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 1.2,
+      "h": 2.0,
+      "r": 2.0,
+      "er": 2.0,
+      "era": 10.8,
+      "k": 2.0,
+      "k/9": 10.8,
+      "hr": null,
+      "whip": 1.8
+    },
+    {
       "date": "May 2",
       "opponent": "Anna Maria",
       "score": "W, 13-1",
@@ -240,6 +256,22 @@
       "k/9": 0.0,
       "hr": null,
       "whip": 3.0
+    },
+    {
+      "date": "May 8",
+      "opponent": "Salem St.",
+      "score": "W, 7-4",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 3.1,
+      "h": 2.0,
+      "r": 1.0,
+      "er": 1.0,
+      "era": 2.7,
+      "k": 2.0,
+      "k/9": 5.4,
+      "hr": null,
+      "whip": 0.6
     }
   ]
 }
