@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1778122431.5831745,
+  "scraped_at": 1778552459.008034,
   "rows": [
     {
       "date": "Mar 7",
@@ -176,6 +176,38 @@
       "k/9": 9.0,
       "hr": null,
       "whip": 0.5
+    },
+    {
+      "date": "May 8",
+      "opponent": "vs. Westfield St.",
+      "score": "W, 9-5",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 1.0,
+      "h": 1.0,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": null,
+      "whip": 3.0
+    },
+    {
+      "date": "May 9",
+      "opponent": "at Bridgewater St.",
+      "score": "L, 12-11",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 0.0,
+      "h": 1.0,
+      "r": 2.0,
+      "er": 2.0,
+      "era": Infinity,
+      "k": 0.0,
+      "k/9": 0.0,
+      "hr": 1.0,
+      "whip": null
     }
   ]
 }
