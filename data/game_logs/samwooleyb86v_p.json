@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1778122408.2742422,
+  "scraped_at": 1779125611.1216524,
   "rows": [
     {
       "date": "Mar 1",
@@ -192,6 +192,22 @@
       "k/9": 0.0,
       "hr": null,
       "whip": 3.0
+    },
+    {
+      "date": "May 7",
+      "opponent": "vs. Worcester St.",
+      "score": "L, 14-11",
+      "w": 0.0,
+      "l": 0.0,
+      "ip": 2.0,
+      "h": 2.0,
+      "r": null,
+      "er": null,
+      "era": 0.0,
+      "k": 3.0,
+      "k/9": 13.5,
+      "hr": null,
+      "whip": 1.5
     }
   ]
 }
