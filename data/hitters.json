@@ -1,5 +1,5 @@
 {
-  "scraped_at": 1783001600.9947693,
+  "scraped_at": 1783096274.4340658,
   "rows": [
     {
       "rk": 1.0,
@@ -1677,6 +1677,33 @@
     },
     {
       "rk": 63.0,
+      "slug": "camdenzerbato0q4z",
+      "name": "C Zerbato",
+      "team": "MCLA",
+      "gp": 30.0,
+      "ab": 64.0,
+      "h": 14.0,
+      "rbi": 7.0,
+      "bb": 10.0,
+      "2b": 3.0,
+      "3b": 0,
+      "hr": 0,
+      "xbh": 3.0,
+      "k": 16.0,
+      "avg": 0.219,
+      "obp": 0.329,
+      "slg": 0.266,
+      "hbp": 1.0,
+      "sf": 1.0,
+      "sh": 0,
+      "hdp": 1.0,
+      "go": 22.0,
+      "fo": 12.0,
+      "go/fo": 1.83,
+      "pa": 76.0
+    },
+    {
+      "rk": 64.0,
       "slug": "zacharykern0lo3",
       "name": "Z Kern",
       "team": "Framingham St.",
@@ -1703,7 +1730,7 @@
       "pa": 105.0
     },
     {
-      "rk": 64.0,
+      "rk": 65.0,
       "slug": "joesardoucyt",
       "name": "J Sardo",
       "team": "MCLA",
@@ -1730,7 +1757,7 @@
       "pa": 127.0
     },
     {
-      "rk": 65.0,
+      "rk": 66.0,
       "slug": "jonnypaynehxh9",
       "name": "J Payne",
       "team": "Salem St.",
@@ -1757,7 +1784,7 @@
       "pa": 110.0
     },
     {
-      "rk": 66.0,
+      "rk": 67.0,
       "slug": "scottpaquette1b4t",
       "name": "S Paquette",
       "team": "Framingham St.",
